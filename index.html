@@ -1,0 +1,1014 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--PICKLE-ARTIFACT-HEAD-->
+<title>PICKLE Identity — Vol. 01</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,900;1,9..144,500&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+/* ============ PICKLE — committed sun-faded "paper" world (single-theme by design) ============ */
+:root{
+  color-scheme: light;
+  /* recommended route = Oddly Official (defaults live here so page holds pre-JS) */
+  --paper:#F1E8D4; --paper-2:#E7DDC6; --chalk:#FAF5E9;
+  --ink:#211E18; --ink-soft:#4A4438;
+  --accent:#24382C;      /* bottle green */
+  --accent-2:#A5382A;    /* stamp oxblood */
+  --brass:#A8823C;
+  --muted:#8E897B;
+  --line:rgba(33,30,24,.22);
+  --line-soft:rgba(33,30,24,.12);
+  --font-display:'Archivo', system-ui, sans-serif;
+  --font-serif:'Fraunces', Georgia, serif;
+  --font-grotesque:'Archivo', system-ui, sans-serif;
+  --font-mono:'Space Mono', ui-monospace, monospace;
+  --shadow: 0 1px 0 rgba(33,30,24,.08), 0 18px 40px -28px rgba(33,30,24,.5);
+}
+/* ---- Route palettes (re-theme the Route Studio + cover) ---- */
+body[data-route="riviera"]{
+  --paper:#EFE7D6; --paper-2:#E3DAC4; --chalk:#F8F2E6;
+  --ink:#182338; --ink-soft:#37425c;
+  --accent:#3E7CB1;      /* sea blue */
+  --accent-2:#D14B3C;    /* tomato */
+  --brass:#C79A3E;
+  --muted:#8F9AA6;
+  --line:rgba(24,35,56,.22); --line-soft:rgba(24,35,56,.12);
+  --font-display:'Fraunces', Georgia, serif;
+}
+body[data-route="official"]{
+  --paper:#F1E8D4; --paper-2:#E7DDC6; --chalk:#FAF5E9;
+  --ink:#211E18; --ink-soft:#4A4438;
+  --accent:#24382C; --accent-2:#A5382A; --brass:#A8823C; --muted:#8E897B;
+  --line:rgba(33,30,24,.22); --line-soft:rgba(33,30,24,.12);
+  --font-display:'Archivo', system-ui, sans-serif;
+}
+body[data-route="analog"]{
+  --paper:#EEE3CB; --paper-2:#E4D6B8; --chalk:#F6EDD6;
+  --ink:#241F17; --ink-soft:#4d4230;
+  --accent:#2F6E6A;      /* faded teal */
+  --accent-2:#C0663C;    /* terracotta orange */
+  --brass:#DDB23B;       /* mustard */
+  --muted:#9a8f76;
+  --line:rgba(36,31,23,.24); --line-soft:rgba(36,31,23,.12);
+  --font-display:'Fraunces', Georgia, serif;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{animation:none !important; transition:none !important} }
+body{
+  margin:0; background:var(--chalk); color:var(--ink);
+  font-family:var(--font-grotesque);
+  font-size:16px; line-height:1.55; -webkit-font-smoothing:antialiased;
+  transition:background .5s ease, color .5s ease;
+}
+img{max-width:100%}
+[hidden]{display:none !important}
+a{color:inherit}
+h1,h2,h3,h4{margin:0; text-wrap:balance}
+p{margin:0}
+.wrap{width:100%; max-width:1120px; margin:0 auto; padding-inline:20px}
+.mono{font-family:var(--font-mono)}
+.eyebrow{font-family:var(--font-mono); font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:var(--accent-2)}
+.sec-num{font-family:var(--font-mono); font-size:12px; letter-spacing:.2em; color:var(--muted)}
+
+/* ---------------- NAV ---------------- */
+.nav{position:sticky; top:0; z-index:50; background:color-mix(in srgb, var(--chalk) 88%, transparent); backdrop-filter:blur(8px); border-bottom:1px solid var(--line-soft)}
+.nav-in{display:flex; align-items:center; gap:18px; height:56px}
+.nav-brand{font-family:var(--font-display); font-weight:800; letter-spacing:.32em; font-size:15px; text-transform:uppercase}
+.nav-links{display:flex; gap:2px; margin-left:auto; overflow-x:auto; scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{font-family:var(--font-mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; text-decoration:none; color:var(--ink-soft); padding:8px 10px; border-radius:2px; white-space:nowrap}
+.nav-links a:hover{color:var(--ink); background:var(--line-soft)}
+.nav-links a:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+
+/* ---------------- SECTION SHELL ---------------- */
+section{padding-block:64px; border-bottom:1px solid var(--line-soft)}
+.sec-head{display:flex; align-items:baseline; gap:16px; flex-wrap:wrap; margin-bottom:28px}
+.sec-head h2{font-family:var(--font-display); font-weight:800; font-size:clamp(24px,4.2vw,38px); letter-spacing:-.01em; text-transform:uppercase}
+body[data-route="riviera"] .sec-head h2, body[data-route="analog"] .sec-head h2{letter-spacing:-.02em; text-transform:none}
+.sec-head .lead{color:var(--ink-soft); max-width:60ch; font-size:15px}
+
+/* ---------------- COVER ---------------- */
+.cover{position:relative; overflow:hidden; background:
+   radial-gradient(120% 90% at 82% 8%, color-mix(in srgb,var(--brass) 26%, transparent), transparent 55%),
+   radial-gradient(100% 80% at 6% 96%, color-mix(in srgb,var(--accent) 22%, transparent), transparent 60%),
+   var(--paper);
+   padding-block:56px; transition:background .5s ease}
+.cover .frame{border:1.5px solid var(--ink); padding:clamp(22px,5vw,54px) clamp(20px,5vw,52px); position:relative}
+.cover .frame::before{content:""; position:absolute; inset:6px; border:1px solid var(--line)}
+.cover-top{display:flex; justify-content:space-between; gap:12px; font-family:var(--font-mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-soft); flex-wrap:wrap}
+.cover-wordmark{font-family:var(--font-display); font-weight:800; text-transform:uppercase; letter-spacing:.06em; font-size:clamp(58px,17vw,168px); line-height:.9; margin:clamp(18px,4vw,34px) 0 8px}
+body[data-route="riviera"] .cover-wordmark{font-family:var(--font-serif); font-weight:900; letter-spacing:.02em}
+body[data-route="analog"] .cover-wordmark{font-family:var(--font-serif); font-weight:900; font-style:italic; letter-spacing:-.01em}
+.cover-sub{display:flex; align-items:center; gap:14px; flex-wrap:wrap; border-top:1px solid var(--line); padding-top:16px; margin-top:8px}
+.cover-sub .stmt{font-family:var(--font-serif); font-size:clamp(16px,2.4vw,22px); font-style:italic; max-width:44ch; color:var(--ink)}
+.vol-chip{font-family:var(--font-mono); font-size:12px; letter-spacing:.2em; text-transform:uppercase; border:1px solid var(--ink); padding:7px 12px; white-space:nowrap; background:var(--accent); color:var(--chalk)}
+.cover-tag{margin-left:auto; font-family:var(--font-mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-soft); text-align:right}
+
+/* ---------------- ROUTE STUDIO ---------------- */
+.route-bar{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:8px}
+.route-btn{appearance:none; cursor:pointer; font-family:var(--font-mono); font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+  background:transparent; color:var(--ink-soft); border:1px solid var(--line); padding:11px 16px; border-radius:2px; transition:all .25s ease; display:flex; align-items:center; gap:9px}
+.route-btn .dot{width:9px; height:9px; border-radius:50%; background:var(--rb); border:1px solid rgba(0,0,0,.25)}
+.route-btn:hover{border-color:var(--ink); color:var(--ink)}
+.route-btn:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.route-btn[aria-pressed="true"]{background:var(--ink); color:var(--chalk); border-color:var(--ink)}
+.route-reset{margin-left:auto; appearance:none; cursor:pointer; background:transparent; border:1px dashed var(--line); color:var(--ink-soft);
+  font-family:var(--font-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; padding:11px 14px; border-radius:2px}
+.route-reset:hover{border-color:var(--accent-2); color:var(--accent-2)}
+.rec-flag{display:inline-block; font-family:var(--font-mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--chalk); background:var(--accent-2); padding:2px 7px; margin-left:6px; vertical-align:middle}
+
+.studio{margin-top:22px; background:var(--paper); border:1px solid var(--line); box-shadow:var(--shadow); transition:background .5s ease}
+.studio-top{display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap; padding:16px 20px; border-bottom:1px solid var(--line)}
+.studio-top .rname{font-family:var(--font-display); font-weight:800; font-size:22px; text-transform:uppercase; letter-spacing:.02em}
+body[data-route="riviera"] .studio-top .rname, body[data-route="analog"] .studio-top .rname{font-family:var(--font-serif); text-transform:none; font-weight:900}
+.studio-top .ridea{font-family:var(--font-mono); font-size:11px; letter-spacing:.06em; color:var(--ink-soft); max-width:52ch}
+.studio-grid{display:grid; grid-template-columns:1.1fr 1fr; gap:0}
+@media (max-width:760px){ .studio-grid{grid-template-columns:1fr} }
+.studio-cell{padding:22px 20px; border-bottom:1px solid var(--line-soft)}
+.studio-grid>.studio-cell:nth-child(odd){border-right:1px solid var(--line-soft)}
+@media (max-width:760px){ .studio-grid>.studio-cell:nth-child(odd){border-right:none} }
+.cell-label{font-family:var(--font-mono); font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-bottom:12px}
+.studio-logo{font-family:var(--font-display); font-weight:800; text-transform:uppercase; letter-spacing:.05em; font-size:clamp(30px,6vw,52px); line-height:1; color:var(--ink)}
+body[data-route="riviera"] .studio-logo{font-family:var(--font-serif); font-weight:900; letter-spacing:.01em}
+body[data-route="analog"] .studio-logo{font-family:var(--font-serif); font-weight:900; font-style:italic}
+.studio-logo small{display:block; font-family:var(--font-mono); font-size:11px; letter-spacing:.24em; margin-top:10px; color:var(--accent-2)}
+.pal-row{display:flex; gap:0; height:56px; border:1px solid var(--line); overflow:hidden}
+.pal-row span{flex:1}
+.mood{font-family:var(--font-serif); font-style:italic; font-size:20px; color:var(--ink); line-height:1.35}
+.graphic-demo{border:1px solid var(--line); padding:16px; background:var(--chalk); text-align:center}
+.graphic-demo .gd-main{font-family:var(--font-display); font-weight:800; text-transform:uppercase; letter-spacing:.14em; font-size:18px; color:var(--accent)}
+.graphic-demo .gd-sub{font-family:var(--font-mono); font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-soft); margin-top:8px}
+.apps-chips{display:flex; gap:8px; flex-wrap:wrap}
+.apps-chips span{font-family:var(--font-mono); font-size:11px; letter-spacing:.06em; border:1px solid var(--line); padding:7px 10px; color:var(--ink-soft)}
+.route-verdict{padding:16px 20px; border-top:1px solid var(--line); display:flex; gap:12px; flex-wrap:wrap; align-items:center; background:var(--chalk)}
+.verdict-tag{font-family:var(--font-mono); font-size:10px; letter-spacing:.16em; text-transform:uppercase; padding:4px 9px; border:1px solid currentColor}
+.verdict-work{color:var(--accent)} .verdict-risk{color:var(--accent-2)}
+.route-verdict p{font-size:14px; color:var(--ink-soft); max-width:70ch}
+[data-when]{display:none}
+body[data-route="riviera"] [data-when~="riviera"],
+body[data-route="official"] [data-when~="official"],
+body[data-route="analog"] [data-when~="analog"]{display:block}
+.apps-chips[data-when]{display:none}
+body[data-route="riviera"] .apps-chips[data-when~="riviera"],
+body[data-route="official"] .apps-chips[data-when~="official"],
+body[data-route="analog"] .apps-chips[data-when~="analog"]{display:flex}
+
+/* ---------------- LOGO SYSTEM ---------------- */
+.logo-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(240px,1fr)); gap:14px}
+.logo-card{border:1px solid var(--line); background:var(--paper); display:flex; flex-direction:column; min-height:200px}
+.logo-card .stage{flex:1; display:grid; place-items:center; padding:26px 18px; text-align:center}
+.logo-card .stage.dark{background:var(--ink)}
+.logo-card .stage.paper{background:var(--paper-2)}
+.logo-card .stage.green{background:var(--accent)}
+.logo-card .meta{border-top:1px solid var(--line); padding:12px 14px}
+.logo-card .meta .lname{font-family:var(--font-mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink); display:flex; justify-content:space-between; gap:8px}
+.logo-card .meta .luse{font-size:12.5px; color:var(--ink-soft); margin-top:6px; line-height:1.4}
+.wm{font-family:var(--font-display); font-weight:800; text-transform:uppercase; letter-spacing:.06em; line-height:.92; color:var(--ink)}
+.wm.on-dark{color:var(--chalk)} .wm.on-green{color:var(--chalk)}
+.wm-serif{font-family:var(--font-serif); font-weight:900; text-transform:uppercase; letter-spacing:.01em; color:var(--ink)}
+.wm-xl{font-size:40px} .wm-l{font-size:30px} .wm-m{font-size:22px}
+.wm-stack{display:flex; flex-direction:column; align-items:center; gap:6px}
+.wm-desc{font-family:var(--font-mono); font-size:9.5px; letter-spacing:.26em; text-transform:uppercase}
+.badge-svg{width:150px; height:150px; display:block}
+
+/* ---------------- COLOUR ---------------- */
+.swatches{display:grid; grid-template-columns:repeat(auto-fill, minmax(180px,1fr)); gap:12px}
+.sw{border:1px solid var(--line); background:var(--paper); overflow:hidden}
+.sw .chip{height:78px}
+.sw .sw-body{padding:11px 12px}
+.sw .sw-name{font-family:var(--font-display); font-weight:700; font-size:14px; text-transform:uppercase; letter-spacing:.03em}
+.sw .sw-hex{font-family:var(--font-mono); font-size:11px; color:var(--ink-soft); letter-spacing:.05em}
+.sw .sw-role{font-size:12px; color:var(--ink-soft); margin-top:6px; line-height:1.4}
+.sw .sw-tags{display:flex; gap:5px; margin-top:9px; flex-wrap:wrap}
+.sw .sw-tags b{font-family:var(--font-mono); font-size:9px; letter-spacing:.08em; text-transform:uppercase; padding:2px 5px; border:1px solid var(--line); color:var(--ink-soft); font-weight:400}
+.sw .sw-tags b.yes{color:var(--accent); border-color:color-mix(in srgb,var(--accent) 45%, var(--line))}
+.sw .sw-tags b.no{color:var(--muted); opacity:.7}
+.combos{display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px; margin-top:26px}
+.combo{border:1px solid var(--line); padding:14px; background:var(--paper)}
+.combo .cname{font-family:var(--font-mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; margin-bottom:10px; color:var(--ink)}
+.combo .bar{display:flex; height:44px; border:1px solid var(--line)}
+.combo .bar span{flex:1}
+.combo .cnote{font-size:12px; color:var(--ink-soft); margin-top:9px}
+
+/* ---------------- TYPE ---------------- */
+.type-stack{display:grid; gap:16px}
+.type-card{border:1px solid var(--line); background:var(--paper); padding:22px}
+.type-card .tk{font-family:var(--font-mono); font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-bottom:12px; display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap}
+.t-display{font-family:var(--font-display); font-weight:800; text-transform:uppercase; letter-spacing:-.01em; font-size:clamp(30px,6vw,54px); line-height:.98}
+.t-serif{font-family:var(--font-serif); font-weight:500; font-style:italic; font-size:clamp(20px,3.6vw,30px); line-height:1.25}
+.t-body{font-size:16px; line-height:1.6; max-width:62ch; color:var(--ink-soft)}
+.t-label{font-family:var(--font-mono); font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink)}
+.t-graphic{font-family:var(--font-display); font-weight:800; text-transform:uppercase; letter-spacing:.16em; font-size:clamp(20px,4vw,30px); color:var(--accent)}
+.type-scale{display:flex; gap:6px; flex-wrap:wrap; font-family:var(--font-mono); font-size:11px; color:var(--ink-soft)}
+.type-scale b{font-weight:400; border:1px solid var(--line); padding:4px 8px}
+
+/* ---------------- APPAREL ---------------- */
+.apparel-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:14px}
+.mock{border:1px solid var(--line); background:var(--paper-2); overflow:hidden; display:flex; flex-direction:column}
+.mock .art{aspect-ratio:1/1; display:grid; place-items:center; padding:12px; background:
+   repeating-linear-gradient(45deg, transparent 0 12px, color-mix(in srgb,var(--ink) 3%, transparent) 12px 13px), var(--paper)}
+.mock .cap{border-top:1px solid var(--line); padding:11px 13px; background:var(--paper)}
+.mock .cap b{font-family:var(--font-mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; display:block}
+.mock .cap span{font-size:12px; color:var(--ink-soft)}
+.mock svg{width:100%; height:auto; display:block}
+
+/* ---------------- COPY GALLERY ---------------- */
+.copy-tabs{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px}
+.copy-tab{appearance:none; cursor:pointer; font-family:var(--font-mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; background:transparent; border:1px solid var(--line); color:var(--ink-soft); padding:9px 14px; border-radius:2px}
+.copy-tab[aria-pressed="true"]{background:var(--accent); color:var(--chalk); border-color:var(--accent)}
+.copy-tab:focus-visible{outline:2px solid var(--accent-2); outline-offset:2px}
+.copy-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:12px}
+.q{border:1px solid var(--line); background:var(--paper); padding:20px 18px; position:relative; display:flex; flex-direction:column; gap:10px; min-height:118px}
+.q .qtext{font-family:var(--font-serif); font-size:19px; line-height:1.3; color:var(--ink)}
+.q.big .qtext{font-family:var(--font-display); font-weight:800; text-transform:uppercase; letter-spacing:.03em; font-size:18px}
+.q .qmeta{margin-top:auto; display:flex; justify-content:space-between; align-items:center; gap:8px; font-family:var(--font-mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted)}
+.q .star{color:var(--accent-2); font-weight:700}
+
+/* ---------------- BRAND BOARD ---------------- */
+.board{background:var(--paper); border:1.5px solid var(--ink); padding:0}
+.board-top{display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap; padding:18px 22px; border-bottom:1px solid var(--ink)}
+.board-top .bt-title{font-family:var(--font-display); font-weight:800; text-transform:uppercase; letter-spacing:.04em; font-size:20px}
+.board-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:0}
+@media (max-width:820px){ .board-grid{grid-template-columns:1fr 1fr} }
+@media (max-width:520px){ .board-grid{grid-template-columns:1fr} }
+.bcell{padding:18px 20px; border-right:1px solid var(--line-soft); border-bottom:1px solid var(--line-soft)}
+.bcell h4{font-family:var(--font-mono); font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-bottom:10px}
+.bcell .big-word{font-family:var(--font-display); font-weight:800; text-transform:uppercase; letter-spacing:.05em; font-size:34px; line-height:.95}
+.bcell p{font-size:13.5px; color:var(--ink-soft); line-height:1.5}
+.bcell .mini-pal{display:flex; height:30px; border:1px solid var(--line)}
+.bcell .mini-pal span{flex:1}
+.photo-strip{display:grid; grid-template-columns:repeat(4,1fr); gap:0}
+@media (max-width:640px){ .photo-strip{grid-template-columns:1fr 1fr} }
+.photo-strip .ph{aspect-ratio:4/5; position:relative; display:grid; place-items:end start; padding:10px}
+.photo-strip .ph span{font-family:var(--font-mono); font-size:9px; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.92); mix-blend-mode:normal}
+.ph.p1{background:linear-gradient(160deg,#c9a86a,#7a5b39)}
+.ph.p2{background:linear-gradient(160deg,#8fb0c4,#33506a)}
+.ph.p3{background:linear-gradient(160deg,#cf7f5a,#5f3220)}
+.ph.p4{background:linear-gradient(160deg,#7f9470,#3a4a34)}
+
+/* ---------------- DECISION NOTES ---------------- */
+.notes-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px}
+.note{border:1px solid var(--line); background:var(--paper); padding:18px}
+.note h4{font-family:var(--font-mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; margin-bottom:12px; padding-bottom:10px; border-bottom:1px solid var(--line-soft); display:flex; align-items:center; gap:8px}
+.note.rec h4{color:var(--accent)} .note.exp h4{color:var(--brass)} .note.avoid h4{color:var(--accent-2)} .note.appr h4{color:var(--ink)}
+.note ul{margin:0; padding-left:16px; display:flex; flex-direction:column; gap:9px}
+.note li{font-size:13.5px; color:var(--ink-soft); line-height:1.45}
+.note .tick{list-style:none; margin-left:-16px; padding-left:0}
+
+footer{padding-block:40px; text-align:center}
+footer .fmark{font-family:var(--font-display); font-weight:800; letter-spacing:.34em; text-transform:uppercase; font-size:14px}
+footer p{font-family:var(--font-mono); font-size:11px; letter-spacing:.1em; color:var(--muted); margin-top:10px}
+.callout{border-left:3px solid var(--accent-2); background:color-mix(in srgb,var(--accent-2) 7%, var(--paper)); padding:14px 16px; font-size:14px; color:var(--ink-soft); margin-top:18px}
+.callout b{color:var(--ink)}
+</style>
+</head>
+<body data-route="official">
+
+<!-- ============ NAV ============ -->
+<nav class="nav" aria-label="Section navigation">
+  <div class="wrap nav-in">
+    <span class="nav-brand">PICKLE</span>
+    <div class="nav-links">
+      <a href="#cover">Cover</a>
+      <a href="#routes">Routes</a>
+      <a href="#logos">Logos</a>
+      <a href="#colour">Colour</a>
+      <a href="#type">Type</a>
+      <a href="#apparel">Apparel</a>
+      <a href="#copy">Copy</a>
+      <a href="#board">Board</a>
+      <a href="#notes">Notes</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ COVER ============ -->
+<header class="cover" id="cover">
+  <div class="wrap">
+    <div class="frame">
+      <div class="cover-top">
+        <span>Private Leisure Department</span>
+        <span>Visual Identity · Specimen Sheet</span>
+        <span>Reg. No. PKL-VI-01</span>
+      </div>
+      <div class="cover-wordmark">PICKLE</div>
+      <div class="cover-sub">
+        <span class="vol-chip">Vol. 01 — The Off-Season</span>
+        <p class="stmt">Serious clothes. Silly name. A properly made wardrobe that refuses to take itself too seriously.</p>
+        <span class="cover-tag">Est. for recreational use<br>Members only · everyone welcome</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ ROUTE STUDIO ============ -->
+<section id="routes">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">01 / Creative Routes</span>
+    </div>
+    <div class="sec-head" style="margin-top:-14px">
+      <h2>Three Ways In</h2>
+      <p class="lead">Three genuinely different identities — not three shades of the same beige. Click a route to re-theme the studio: palette, type, logo, graphic device, mood and sample applications all update. <b>Oddly Official</b> is the recommendation.</p>
+    </div>
+
+    <div class="route-bar" role="tablist" aria-label="Creative route selector">
+      <button class="route-btn" role="tab" data-route-btn="riviera" aria-pressed="false" style="--rb:#3E7CB1">
+        <span class="dot" aria-hidden="true"></span> Route A · Riviera Club
+      </button>
+      <button class="route-btn" role="tab" data-route-btn="official" aria-pressed="true" style="--rb:#24382C">
+        <span class="dot" aria-hidden="true"></span> Route B · Oddly Official
+      </button>
+      <button class="route-btn" role="tab" data-route-btn="analog" aria-pressed="false" style="--rb:#C0663C">
+        <span class="dot" aria-hidden="true"></span> Route C · Analog Leisure
+      </button>
+      <button class="route-reset" type="button" data-reset>↺ Reset to recommended</button>
+    </div>
+
+    <div class="studio" aria-live="polite">
+      <div class="studio-top">
+        <div>
+          <div class="rname">
+            <span data-when="riviera">Riviera Club</span>
+            <span data-when="official">Oddly Official <span class="rec-flag">Recommended</span></span>
+            <span data-when="analog">Analog Leisure</span>
+          </div>
+          <p class="ridea">
+            <span data-when="riviera">A refined Mediterranean leisure club — sun, salt and quiet money, kept just off the well-trodden coastal path.</span>
+            <span data-when="official">A believable private institution devoted, with total sincerity, to doing very little. The name is the joke; the execution never is.</span>
+            <span data-when="analog">A record-store-and-film-camera world — nostalgic, hand-touched, culturally curious, never messy.</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="studio-grid">
+        <div class="studio-cell">
+          <div class="cell-label">Logo direction</div>
+          <div class="studio-logo">PICKLE
+            <small data-when="riviera">Pickle Leisure Club · Cap Riviera</small>
+            <small data-when="official">Private Leisure Dept. · Reg. Members</small>
+            <small data-when="analog">Pickle Recordings · Off-Season Tapes</small>
+          </div>
+        </div>
+        <div class="studio-cell">
+          <div class="cell-label">Palette</div>
+          <div class="pal-row" aria-hidden="true">
+            <span data-when="riviera" style="background:#EFE7D6"></span><span data-when="riviera" style="background:#3E7CB1"></span><span data-when="riviera" style="background:#182338"></span><span data-when="riviera" style="background:#D14B3C"></span><span data-when="riviera" style="background:#C79A3E"></span>
+            <span data-when="official" style="background:#F1E8D4"></span><span data-when="official" style="background:#24382C"></span><span data-when="official" style="background:#211E18"></span><span data-when="official" style="background:#A5382A"></span><span data-when="official" style="background:#A8823C"></span>
+            <span data-when="analog" style="background:#EEE3CB"></span><span data-when="analog" style="background:#2F6E6A"></span><span data-when="analog" style="background:#C0663C"></span><span data-when="analog" style="background:#DDB23B"></span><span data-when="analog" style="background:#241F17"></span>
+          </div>
+          <div class="cell-label" style="margin-top:18px">Graphic device</div>
+          <div class="graphic-demo">
+            <div class="gd-main">
+              <span data-when="riviera">Cap Pickle · Est. Leisure</span>
+              <span data-when="official">For Recreational Use</span>
+              <span data-when="analog">Off-Season · Side B</span>
+            </div>
+            <div class="gd-sub">
+              <span data-when="riviera">Resort crest · sailing-flag stripe · racket-club serif</span>
+              <span data-when="official">Rubber-stamp seal · reg. numbers · dept. labels</span>
+              <span data-when="analog">Record-label ring · tracklist type · tape spine</span>
+            </div>
+          </div>
+        </div>
+        <div class="studio-cell">
+          <div class="cell-label">Mood</div>
+          <p class="mood">
+            <span data-when="riviera">Golden hour on a wooden boat. Effortless, tanned, quietly expensive.</span>
+            <span data-when="official">Deadpan and dependable. The straightest face in the room, quietly amused.</span>
+            <span data-when="analog">A slow Sunday, a good record, the window open. Warm and unhurried.</span>
+          </p>
+        </div>
+        <div class="studio-cell">
+          <div class="cell-label">Sample applications</div>
+          <div class="apps-chips" data-when="riviera"><span>Sailing-stripe cap</span><span>Resort-crest tee</span><span>Woven flag label</span><span>Deck-side lookbook</span></div>
+          <div class="apps-chips" data-when="official"><span>“MEMBER” cap</span><span>Dept. seal back-print</span><span>Membership hangtag</span><span>Stamped mailer</span></div>
+          <div class="apps-chips" data-when="analog"><span>Tracklist back-print</span><span>Label-ring cap</span><span>Tape-spine hem label</span><span>Poster drop</span></div>
+        </div>
+      </div>
+
+      <div class="route-verdict">
+        <span class="verdict-tag verdict-work">Why it works</span>
+        <p>
+          <span data-when="riviera">Instantly premium and wearable, straight off the moodboard. <b>Risk:</b> it is the most crowded lane in fashion right now (Sporty &amp; Rich et al.) — without the wit, it reads as a beautiful copy.</span>
+          <span data-when="official">Owns territory no one else does, turns the silly name into an asset, and makes the humour infinitely extendable through copy — not cartoons. <b>Risk:</b> if played cold it reads nerdy; it must stay warm and beautifully made.</span>
+          <span data-when="analog">Culturally rich and genuinely distinctive, great for content and community. <b>Risk:</b> tips retro/costume-y fast and reads less premium if the craft slips.</span>
+        </p>
+        <span class="verdict-tag verdict-risk" data-when="riviera">Crowded lane</span>
+        <span class="verdict-tag verdict-risk" data-when="official">Keep it warm</span>
+        <span class="verdict-tag verdict-risk" data-when="analog">Retro drift</span>
+      </div>
+    </div>
+
+    <div class="callout">
+      <b>Recommendation — Route B: Oddly Official</b>, warmed by Route A's sun-faded palette &amp; film photography and textured with a few of Route C's archive/label details. It is the only route that makes the name <em>PICKLE</em> a strategic advantage instead of a liability, and it delivers the foundation's “The Club” + “Straight Face” pillars directly. Riviera is the fallback aesthetic; Analog is a seasonal capsule, not the house.
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOGO SYSTEM ============ -->
+<section id="logos">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">02 / Logo System</span></div>
+    <div class="sec-head" style="margin-top:-14px">
+      <h2>One Mark, Many Registers</h2>
+      <p class="lead">A working system, not a single wordmark — shown in the recommended <b>Oddly Official</b> world. Primary wordmark, compact secondary, monogram, club emblem, stamp system and lockups. All hold at cap-embroidery scale.</p>
+    </div>
+
+    <div class="logo-grid">
+      <!-- 1 Primary wordmark -->
+      <div class="logo-card">
+        <div class="stage paper"><span class="wm wm-xl">PICKLE</span></div>
+        <div class="meta"><div class="lname"><span>Primary Wordmark</span><span>01</span></div>
+          <div class="luse">Archivo Extra-Bold, +6% tracking. The house signature — hero of storefront, lookbook covers, large chest prints.</div></div>
+      </div>
+      <!-- 1b Primary on dark -->
+      <div class="logo-card">
+        <div class="stage dark"><span class="wm wm-xl on-dark">PICKLE</span></div>
+        <div class="meta"><div class="lname"><span>Primary · Reversed</span><span>01·b</span></div>
+          <div class="luse">Chalk on ink for mailers, dark packaging and film-still overlays. Same tracking, never lighter than Bold.</div></div>
+      </div>
+      <!-- 2 Secondary compact -->
+      <div class="logo-card">
+        <div class="stage paper">
+          <span class="wm-stack"><span class="wm wm-m">PICKLE</span><span class="wm-desc" style="color:var(--accent-2)">PRIVATE LEISURE DEPT.</span></span>
+        </div>
+        <div class="meta"><div class="lname"><span>Secondary Lockup</span><span>02</span></div>
+          <div class="luse">Compact stacked mark for woven labels, shorts, nav bar, packaging. Descriptor sets it apart from a bare wordmark.</div></div>
+      </div>
+      <!-- 3 Monogram -->
+      <div class="logo-card">
+        <div class="stage green">
+          <svg class="badge-svg" viewBox="0 0 120 120" role="img" aria-label="PKL monogram mark">
+            <rect x="6" y="6" width="108" height="108" fill="none" stroke="#FAF5E9" stroke-width="1.5"/>
+            <rect x="12" y="12" width="96" height="96" fill="none" stroke="#FAF5E9" stroke-width="0.75"/>
+            <text x="60" y="64" text-anchor="middle" font-family="Archivo, sans-serif" font-weight="800" font-size="42" letter-spacing="2" fill="#FAF5E9">PKL</text>
+            <text x="60" y="90" text-anchor="middle" font-family="'Space Mono', monospace" font-size="9" letter-spacing="4" fill="#A8823C">EST. LEISURE</text>
+          </svg>
+        </div>
+        <div class="meta"><div class="lname"><span>Monogram · PKL</span><span>03</span></div>
+          <div class="luse">Boxed PKL for cap side-embroidery, buttons, zip pulls, favicon. Recommended over a forced single-letter “P”.</div></div>
+      </div>
+      <!-- 4 Club emblem -->
+      <div class="logo-card">
+        <div class="stage paper">
+          <svg class="badge-svg" viewBox="0 0 160 160" role="img" aria-label="Pickle Private Leisure Department club emblem">
+            <defs><path id="circTop" d="M 80,80 m -58,0 a 58,58 0 1 1 116,0" /><path id="circBot" d="M 80,80 m 58,0 a 58,58 0 1 1 -116,0" /></defs>
+            <circle cx="80" cy="80" r="72" fill="none" stroke="#211E18" stroke-width="1.5"/>
+            <circle cx="80" cy="80" r="64" fill="none" stroke="#24382C" stroke-width="4"/>
+            <circle cx="80" cy="80" r="40" fill="none" stroke="#211E18" stroke-width="1"/>
+            <text font-family="Archivo, sans-serif" font-weight="700" font-size="11.5" letter-spacing="3.5" fill="#211E18">
+              <textPath href="#circTop" startOffset="50%" text-anchor="middle">PICKLE · PRIVATE LEISURE</textPath></text>
+            <text font-family="Archivo, sans-serif" font-weight="700" font-size="11.5" letter-spacing="3.5" fill="#211E18">
+              <textPath href="#circBot" startOffset="50%" text-anchor="middle">DEPARTMENT · VOL. 01</textPath></text>
+            <text x="80" y="72" text-anchor="middle" font-family="'Space Mono', monospace" font-size="9" letter-spacing="2" fill="#A5382A">MEMBER</text>
+            <text x="80" y="90" text-anchor="middle" font-family="Archivo, sans-serif" font-weight="800" font-size="20" letter-spacing="3" fill="#211E18">PKL</text>
+            <circle cx="80" cy="120" r="3" fill="#A8823C"/>
+          </svg>
+        </div>
+        <div class="meta"><div class="lname"><span>Club Emblem</span><span>04</span></div>
+          <div class="luse">The signature seal — caps, hangtags, stickers, membership graphics. A believable leisure club, not a fake luxury crest.</div></div>
+      </div>
+      <!-- 5 Stamp system -->
+      <div class="logo-card">
+        <div class="stage paper" style="gap:10px">
+          <div style="display:flex; flex-direction:column; gap:9px; align-items:center">
+            <span style="border:1.5px solid var(--accent-2); color:var(--accent-2); font-family:var(--font-mono); font-size:11px; letter-spacing:.18em; padding:5px 10px; transform:rotate(-4deg)">FOR RECREATIONAL USE</span>
+            <span style="border:1.5px solid var(--ink); color:var(--ink); font-family:var(--font-mono); font-size:11px; letter-spacing:.14em; padding:5px 10px">VOL. 01 · No. 0042</span>
+            <span style="background:var(--accent); color:var(--chalk); font-family:var(--font-mono); font-size:11px; letter-spacing:.16em; padding:5px 10px">OFFICIALLY OFF DUTY</span>
+          </div>
+        </div>
+        <div class="meta"><div class="lname"><span>Stamp System</span><span>05</span></div>
+          <div class="luse">Rubber-stamp devices, reg./archive numbers and dept. labels. Rotate slightly, never perfectly aligned — hangtags, care cards, mailers.</div></div>
+      </div>
+      <!-- 6 Lockup - horizontal -->
+      <div class="logo-card">
+        <div class="stage paper">
+          <span style="display:flex; align-items:center; gap:12px">
+            <span class="wm wm-m">PICKLE</span>
+            <span style="width:1px; height:30px; background:var(--line)"></span>
+            <span class="mono" style="font-size:11px; letter-spacing:.2em; color:var(--accent-2)">VOL.&nbsp;01</span>
+          </span>
+        </div>
+        <div class="meta"><div class="lname"><span>Horizontal Lockup</span><span>06</span></div>
+          <div class="luse">Wordmark + collection code, divider rule between. Website header, email header, invoice.</div></div>
+      </div>
+      <!-- 7 Lockup - club descriptor -->
+      <div class="logo-card">
+        <div class="stage dark">
+          <span class="wm-stack">
+            <span class="wm wm-l on-dark">PICKLE</span>
+            <span class="wm-desc" style="color:var(--brass)">ATHLETIC &amp; LEISURE · NON-COMPETITIVE</span>
+          </span>
+        </div>
+        <div class="meta"><div class="lname"><span>Club Descriptor Lockup</span><span>07</span></div>
+          <div class="luse">Deadpan sub-line under the wordmark. Statement tees, tote linings, back-neck prints.</div></div>
+      </div>
+      <!-- 8 Embroidery lockup -->
+      <div class="logo-card">
+        <div class="stage green">
+          <span class="wm-stack">
+            <span class="wm wm-m on-green" style="letter-spacing:.12em">PICKLE</span>
+            <span class="wm-desc" style="color:var(--brass); letter-spacing:.3em">— PKL —</span>
+          </span>
+        </div>
+        <div class="meta"><div class="lname"><span>Cap Embroidery Lockup</span><span>08</span></div>
+          <div class="luse">Tight tracking, minimum detail, single thread colour (brass on green). Tested to survive 4mm embroidery height.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COLOUR ============ -->
+<section id="colour">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">03 / Colour System</span></div>
+    <div class="sec-head" style="margin-top:-14px">
+      <h2>Warm, Not Beige</h2>
+      <p class="lead">A sun-faded base, disciplined by an inky institutional core and earned accents. Bottle green + oxblood + brass are what keep PICKLE off the generic coastal-Pinterest palette.</p>
+    </div>
+
+    <div class="swatches" id="swatches"></div>
+
+    <h3 style="font-family:var(--font-display); text-transform:uppercase; letter-spacing:.02em; font-size:20px; margin:34px 0 4px">Colour Combinations</h3>
+    <div class="combos" id="combos"></div>
+  </div>
+</section>
+
+<!-- ============ TYPE ============ -->
+<section id="type">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">04 / Typography</span></div>
+    <div class="sec-head" style="margin-top:-14px">
+      <h2>Three Voices, One System</h2>
+      <p class="lead">Archivo does the institutional talking, Fraunces adds warmth and wit, Space Mono handles the paperwork. Three families — practical for garments, web, packaging and labels alike.</p>
+    </div>
+
+    <div class="type-stack">
+      <div class="type-card">
+        <div class="tk"><span>Display · Archivo Extra-Bold</span><span>Headlines · wordmark · back-prints</span></div>
+        <div class="t-display">OFFICIALLY OFF DUTY</div>
+        <div class="type-scale"><b>Uppercase</b><b>Tracking +2–6%</b><b>Weights 700 / 800</b><b>Tight leading</b></div>
+      </div>
+      <div class="type-card">
+        <div class="tk"><span>Serif · Fraunces (Italic)</span><span>Statements · quotes · warmth</span></div>
+        <div class="t-serif">A serious approach to doing very little — quietly, and rather well.</div>
+        <div class="type-scale"><b>Sentence case</b><b>Italic for voice</b><b>opsz for display</b><b>Never all-caps</b></div>
+      </div>
+      <div class="type-card">
+        <div class="tk"><span>Body · Archivo Regular</span><span>Product copy · web · email</span></div>
+        <p class="t-body">Heavyweight everyday clothing, made properly and worn easily. We keep the range small on purpose, state the fabric plainly, and let the writing do the smiling. Body text stays sentence case, ~65 characters wide, generous leading.</p>
+        <div class="type-scale"><b>16px base</b><b>Line-height 1.6</b><b>~65ch measure</b><b>Weight 400/500</b></div>
+      </div>
+      <div class="type-card">
+        <div class="tk"><span>Utility · Space Mono</span><span>Labels · codes · archive numbers</span></div>
+        <div class="t-label">REG. NO. PKL-01 · MEMBER No. 0042 · WASH COLD · 100% COTTON</div>
+        <div class="type-scale"><b>Uppercase</b><b>Tracking +14–20%</b><b>Small sizes</b><b>Tabular numerals</b></div>
+      </div>
+      <div class="type-card">
+        <div class="tk"><span>Apparel graphic · Archivo + Mono</span><span>Chest &amp; back compositions</span></div>
+        <div class="t-graphic">PRIVATE LEISURE DEPT.</div>
+        <div class="t-label" style="margin-top:8px; color:var(--accent-2)">— FOR RECREATIONAL USE ONLY —</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ APPAREL ============ -->
+<section id="apparel">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">05 / Applications</span></div>
+    <div class="sec-head" style="margin-top:-14px">
+      <h2>Beyond The Logo</h2>
+      <p class="lead">Proof the identity travels — identity applications, not the final collection. Constructed here as clean graphic mockups (no photography, no broken images).</p>
+    </div>
+
+    <div class="apparel-grid">
+
+      <!-- Tee front -->
+      <div class="mock">
+        <div class="art">
+          <svg viewBox="0 0 200 200" role="img" aria-label="T-shirt front with small chest emblem">
+            <path d="M64 34 L40 46 L30 78 L48 88 L52 74 L52 172 L148 172 L148 74 L152 88 L170 78 L160 46 L136 34 C130 46 116 50 100 50 C84 50 70 46 64 34 Z" fill="#EDE4CF" stroke="#211E18" stroke-width="1.5"/>
+            <circle cx="118" cy="86" r="15" fill="none" stroke="#24382C" stroke-width="1.4"/>
+            <text x="118" y="83" text-anchor="middle" font-family="'Space Mono',monospace" font-size="4.4" letter-spacing="0.6" fill="#A5382A">MEMBER</text>
+            <text x="118" y="91" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="7" fill="#211E18">PKL</text>
+          </svg>
+        </div>
+        <div class="cap"><b>T-Shirt · Front</b><span>Small left-chest emblem. Whispered, not shouted.</span></div>
+      </div>
+
+      <!-- Tee back -->
+      <div class="mock">
+        <div class="art">
+          <svg viewBox="0 0 200 200" role="img" aria-label="T-shirt back with department print">
+            <path d="M64 34 L40 46 L30 78 L48 88 L52 74 L52 172 L148 172 L148 74 L152 88 L170 78 L160 46 L136 34 C132 44 118 48 100 48 C82 48 68 44 64 34 Z" fill="#24382C" stroke="#211E18" stroke-width="1.5"/>
+            <text x="100" y="96" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="13" letter-spacing="1" fill="#F1E8D4">PRIVATE</text>
+            <text x="100" y="112" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="13" letter-spacing="1" fill="#F1E8D4">LEISURE</text>
+            <text x="100" y="128" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="13" letter-spacing="1" fill="#A8823C">DEPT.</text>
+            <text x="100" y="146" text-anchor="middle" font-family="'Space Mono',monospace" font-size="5.4" letter-spacing="2.2" fill="#EDE4CF">FOR RECREATIONAL USE ONLY</text>
+          </svg>
+        </div>
+        <div class="cap"><b>T-Shirt · Back</b><span>The statement piece — one loud back-print per drop.</span></div>
+      </div>
+
+      <!-- Cap -->
+      <div class="mock">
+        <div class="art">
+          <svg viewBox="0 0 200 160" role="img" aria-label="Cap with front and side embroidery">
+            <path d="M28 96 C28 52 172 52 172 96 L172 104 L28 104 Z" fill="#24382C" stroke="#211E18" stroke-width="1.4"/>
+            <path d="M26 104 C70 122 150 122 150 104 C150 116 120 128 92 128 C60 128 34 118 26 104 Z" fill="#1c2c22" stroke="#211E18" stroke-width="1.2"/>
+            <line x1="100" y1="54" x2="100" y2="104" stroke="#1c2c22" stroke-width="0.8"/>
+            <text x="100" y="90" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="15" letter-spacing="1.5" fill="#A8823C">OFF DUTY</text>
+            <circle cx="100" cy="55" r="2" fill="#211E18"/>
+          </svg>
+        </div>
+        <div class="cap"><b>Cap · Front + Side</b><span>Brass on bottle green. Side hit: “PKL”. The hero product.</span></div>
+      </div>
+
+      <!-- Shorts -->
+      <div class="mock">
+        <div class="art">
+          <svg viewBox="0 0 200 170" role="img" aria-label="Shorts with small leg embroidery">
+            <path d="M50 34 L150 34 L150 70 L108 150 L92 150 L100 84 L92 150 L92 150 L50 150 L50 70 Z" fill="#EDE4CF" stroke="#211E18" stroke-width="1.5"/>
+            <path d="M50 34 L150 34 L150 44 L50 44 Z" fill="#e0d5bd" stroke="#211E18" stroke-width="0.8"/>
+            <text x="70" y="130" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="7" letter-spacing="1" fill="#24382C">PKL</text>
+            <text x="70" y="138" text-anchor="middle" font-family="'Space Mono',monospace" font-size="3.6" letter-spacing="1" fill="#A5382A">LEISURE DEPT.</text>
+          </svg>
+        </div>
+        <div class="cap"><b>Shorts · Leg Hit</b><span>Tiny left-leg mark near hem. Everything else stays plain.</span></div>
+      </div>
+
+      <!-- Woven neck label -->
+      <div class="mock">
+        <div class="art">
+          <svg viewBox="0 0 200 120" role="img" aria-label="Woven neck label">
+            <rect x="34" y="34" width="132" height="52" fill="#F1E8D4" stroke="#24382C" stroke-width="1.4"/>
+            <rect x="38" y="38" width="124" height="44" fill="none" stroke="#A8823C" stroke-width="0.6"/>
+            <text x="100" y="58" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="13" letter-spacing="3" fill="#24382C">PICKLE</text>
+            <text x="100" y="72" text-anchor="middle" font-family="'Space Mono',monospace" font-size="5" letter-spacing="2.4" fill="#A5382A">PRIVATE LEISURE DEPT.</text>
+            <line x1="98" y1="92" x2="102" y2="92" stroke="#211E18" stroke-width="6"/>
+          </svg>
+        </div>
+        <div class="cap"><b>Woven Neck Label</b><span>Damask weave, green + brass. Descriptor makes it collectible.</span></div>
+      </div>
+
+      <!-- Hangtag -->
+      <div class="mock">
+        <div class="art">
+          <svg viewBox="0 0 200 200" role="img" aria-label="Hangtag with membership details">
+            <rect x="62" y="24" width="76" height="150" rx="3" fill="#F1E8D4" stroke="#211E18" stroke-width="1.4"/>
+            <circle cx="100" cy="40" r="5" fill="none" stroke="#211E18" stroke-width="1.2"/>
+            <text x="100" y="72" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="13" letter-spacing="2" fill="#211E18">PICKLE</text>
+            <line x1="76" y1="82" x2="124" y2="82" stroke="#A5382A" stroke-width="0.8"/>
+            <text x="100" y="98" text-anchor="middle" font-family="'Space Mono',monospace" font-size="5.2" letter-spacing="1.4" fill="#4A4438">VOL. 01</text>
+            <text x="100" y="112" text-anchor="middle" font-family="'Space Mono',monospace" font-size="5.2" letter-spacing="1.4" fill="#4A4438">MEMBER No. 0042</text>
+            <text x="100" y="132" text-anchor="middle" font-family="Fraunces,serif" font-style="italic" font-size="6.4" fill="#24382C">Officially yours now.</text>
+            <rect x="80" y="146" width="40" height="16" fill="none" stroke="#24382C" stroke-width="0.8"/>
+            <text x="100" y="157" text-anchor="middle" font-family="'Space Mono',monospace" font-size="4.6" letter-spacing="1" fill="#24382C">REC. USE ONLY</text>
+          </svg>
+        </div>
+        <div class="cap"><b>Hangtag</b><span>A membership card, not a price ticket. Numbered by hand.</span></div>
+      </div>
+
+      <!-- Packaging sticker -->
+      <div class="mock">
+        <div class="art">
+          <svg viewBox="0 0 200 200" role="img" aria-label="Circular packaging seal sticker">
+            <circle cx="100" cy="100" r="62" fill="#A5382A"/>
+            <circle cx="100" cy="100" r="54" fill="none" stroke="#F1E8D4" stroke-width="1"/>
+            <text x="100" y="94" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="15" letter-spacing="2" fill="#F1E8D4">PICKLE</text>
+            <text x="100" y="112" text-anchor="middle" font-family="'Space Mono',monospace" font-size="6" letter-spacing="2" fill="#F1E8D4">OPEN SLOWLY</text>
+            <text x="100" y="150" text-anchor="middle" font-family="'Space Mono',monospace" font-size="5" letter-spacing="2" fill="#F1E8D4">HANDLE AT LEISURE</text>
+          </svg>
+        </div>
+        <div class="cap"><b>Packaging Seal</b><span>Oxblood sticker that closes the mailer. One dry line.</span></div>
+      </div>
+
+      <!-- Mailer -->
+      <div class="mock">
+        <div class="art">
+          <svg viewBox="0 0 200 200" role="img" aria-label="Shipping mailer box">
+            <rect x="34" y="60" width="132" height="92" fill="#24382C" stroke="#211E18" stroke-width="1.4"/>
+            <path d="M34 60 L100 44 L166 60 L100 76 Z" fill="#2c4436" stroke="#211E18" stroke-width="1.2"/>
+            <text x="100" y="108" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="16" letter-spacing="3" fill="#F1E8D4">PICKLE</text>
+            <text x="100" y="124" text-anchor="middle" font-family="'Space Mono',monospace" font-size="5.4" letter-spacing="2" fill="#A8823C">PRIVATE LEISURE DEPT.</text>
+            <text x="100" y="142" text-anchor="middle" font-family="'Space Mono',monospace" font-size="4.8" letter-spacing="1.6" fill="#c9c0aa">THIS SIDE UP · OR DON'T</text>
+          </svg>
+        </div>
+        <div class="cap"><b>Shipping Mailer</b><span>Green box, brass wordmark, deadpan handling note.</span></div>
+      </div>
+
+      <!-- Thank-you card -->
+      <div class="mock">
+        <div class="art">
+          <svg viewBox="0 0 200 200" role="img" aria-label="Thank-you card">
+            <rect x="34" y="52" width="132" height="96" fill="#F1E8D4" stroke="#211E18" stroke-width="1.4"/>
+            <text x="50" y="82" font-family="Fraunces,serif" font-style="italic" font-weight="500" font-size="13" fill="#211E18">You're in.</text>
+            <text x="50" y="104" font-family="Archivo,sans-serif" font-size="6.6" fill="#4A4438">Thanks for joining the</text>
+            <text x="50" y="114" font-family="Archivo,sans-serif" font-size="6.6" fill="#4A4438">least demanding club</text>
+            <text x="50" y="124" font-family="Archivo,sans-serif" font-size="6.6" fill="#4A4438">you'll ever belong to.</text>
+            <text x="50" y="140" font-family="'Space Mono',monospace" font-size="5.4" letter-spacing="1.6" fill="#A5382A">— PICKLE</text>
+          </svg>
+        </div>
+        <div class="cap"><b>Thank-You Card</b><span>Warm, brief, funny. Fraunces italic + a mono sign-off.</span></div>
+      </div>
+
+      <!-- Instagram post -->
+      <div class="mock">
+        <div class="art" style="padding:0; background:none">
+          <svg viewBox="0 0 200 200" role="img" aria-label="Instagram grid post">
+            <rect width="200" height="200" fill="#c9a86a"/>
+            <rect width="200" height="200" fill="url(#g1)"/>
+            <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c9a86a"/><stop offset="1" stop-color="#6d4f30"/></linearGradient></defs>
+            <rect x="16" y="16" width="168" height="168" fill="none" stroke="#F1E8D4" stroke-width="1" opacity="0.85"/>
+            <text x="100" y="104" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="26" letter-spacing="4" fill="#F1E8D4">PICKLE</text>
+            <text x="100" y="122" text-anchor="middle" font-family="'Space Mono',monospace" font-size="6" letter-spacing="3" fill="#F1E8D4">VOL. 01 — THE OFF-SEASON</text>
+          </svg>
+        </div>
+        <div class="cap"><b>Instagram · Post</b><span>Sun-faded film tone, framed wordmark. Caption does the wit.</span></div>
+      </div>
+
+      <!-- Website header -->
+      <div class="mock">
+        <div class="art" style="padding:0; background:none">
+          <svg viewBox="0 0 200 200" role="img" aria-label="Website header preview">
+            <rect width="200" height="200" fill="#FAF5E9"/>
+            <rect x="0" y="0" width="200" height="26" fill="#F1E8D4" stroke="#211E18" stroke-width="0.5"/>
+            <text x="12" y="17" font-family="Archivo,sans-serif" font-weight="800" font-size="9" letter-spacing="2" fill="#211E18">PICKLE</text>
+            <text x="150" y="17" font-family="'Space Mono',monospace" font-size="5" letter-spacing="1.4" fill="#4A4438">SHOP · CLUB</text>
+            <text x="100" y="96" text-anchor="middle" font-family="Fraunces,serif" font-style="italic" font-size="14" fill="#211E18">Officially off duty.</text>
+            <text x="100" y="118" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="9" letter-spacing="2" fill="#24382C">SHOP VOL. 01</text>
+            <rect x="70" y="126" width="60" height="16" fill="none" stroke="#24382C" stroke-width="0.8"/>
+          </svg>
+        </div>
+        <div class="cap"><b>Website · Header</b><span>Quiet nav, one line of voice, single clear action.</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ COPY GALLERY ============ -->
+<section id="copy">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">06 / Copy System</span></div>
+    <div class="sec-head" style="margin-top:-14px">
+      <h2>The Writing Is The Wit</h2>
+      <p class="lead">Deadpan, confident, never desperate for a joke. The humour lives in language and detail — no cartoons, no puns, no “big dill”. ★ marks the strongest lines.</p>
+    </div>
+
+    <div class="copy-tabs" role="tablist" aria-label="Copy category filter">
+      <button class="copy-tab" role="tab" data-cat="all" aria-pressed="true">All</button>
+      <button class="copy-tab" role="tab" data-cat="brand" aria-pressed="false">Brand</button>
+      <button class="copy-tab" role="tab" data-cat="tee" aria-pressed="false">T-Shirts</button>
+      <button class="copy-tab" role="tab" data-cat="cap" aria-pressed="false">Caps</button>
+      <button class="copy-tab" role="tab" data-cat="pack" aria-pressed="false">Packaging</button>
+      <button class="copy-tab" role="tab" data-cat="web" aria-pressed="false">Website</button>
+    </div>
+
+    <div class="copy-grid" id="copyGrid"></div>
+  </div>
+</section>
+
+<!-- ============ BRAND BOARD ============ -->
+<section id="board">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">07 / Brand Board</span></div>
+    <div class="sec-head" style="margin-top:-14px">
+      <h2>PICKLE — At A Glance</h2>
+      <p class="lead">The recommended direction, locked as one page: <b>Oddly Official</b>, warm and well-made.</p>
+    </div>
+
+    <div class="board">
+      <div class="board-top">
+        <span class="bt-title">Oddly Official · Vol. 01</span>
+        <span class="mono" style="font-size:11px; letter-spacing:.16em; color:var(--accent-2)">RECOMMENDED DIRECTION</span>
+      </div>
+      <div class="board-grid">
+        <div class="bcell"><h4>Wordmark</h4><div class="big-word">PICKLE</div><p style="margin-top:8px">Archivo Extra-Bold, +6% tracking.</p></div>
+        <div class="bcell"><h4>Descriptor</h4><div class="wm-desc" style="font-size:11px; letter-spacing:.24em; color:var(--accent-2)">PRIVATE LEISURE DEPT.</div><p style="margin-top:10px">The secondary lockup that carries the world.</p></div>
+        <div class="bcell"><h4>Emblem</h4><p>Circular club seal · “MEMBER / PKL / Vol. 01”. Caps, tags, stickers.</p></div>
+        <div class="bcell"><h4>Palette</h4><div class="mini-pal"><span style="background:#F1E8D4"></span><span style="background:#24382C"></span><span style="background:#211E18"></span><span style="background:#A5382A"></span><span style="background:#A8823C"></span></div><p style="margin-top:8px">Bisque · bottle green · ink · oxblood · brass.</p></div>
+        <div class="bcell"><h4>Typography</h4><p>Archivo (display/body) · Fraunces (voice) · Space Mono (labels).</p></div>
+        <div class="bcell"><h4>Graphic devices</h4><p>Rubber-stamps, reg./member numbers, dept. labels, the seal, dry sub-lines.</p></div>
+        <div class="bcell"><h4>Signature copy</h4><p>“Officially off duty.” · “For recreational use.” · “Members only, everyone welcome.”</p></div>
+        <div class="bcell"><h4>Hero products</h4><p>Caps (reach) · heavyweight tees (flagship) · shorts (completer).</p></div>
+        <div class="bcell"><h4>Photography</h4><p>Sun-faded film, natural light, coastal-leisure, candid — borrowed from Riviera.</p></div>
+      </div>
+      <div class="photo-strip" aria-label="Photography direction — tonal reference swatches">
+        <div class="ph p1"><span>Golden hour / skin + brass</span></div>
+        <div class="ph p2"><span>Sea + sky / cool relief</span></div>
+        <div class="ph p3"><span>Terracotta / warm grain</span></div>
+        <div class="ph p4"><span>Olive / shade + calm</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DECISION NOTES ============ -->
+<section id="notes" style="border-bottom:none">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">08 / Decision Notes</span></div>
+    <div class="sec-head" style="margin-top:-14px">
+      <h2>What's Decided, What's Open</h2>
+      <p class="lead">Read before the next stage. Clear on what is recommended, what is still exploratory, what to never do, and what needs your sign-off.</p>
+    </div>
+
+    <div class="notes-grid">
+      <div class="note rec">
+        <h4>✓ Recommended (proceed)</h4>
+        <ul>
+          <li><b>Route B — Oddly Official</b> as the house identity.</li>
+          <li>Wordmark in <b>Archivo Extra-Bold</b>; “Private Leisure Dept.” descriptor.</li>
+          <li>Core palette: bisque, bottle green, ink, oxblood, brass.</li>
+          <li>Type system: Archivo + Fraunces + Space Mono.</li>
+          <li>Club emblem + stamp system as the proprietary graphic language.</li>
+          <li>Caps as hero; small quiet marks by default.</li>
+        </ul>
+      </div>
+      <div class="note exp">
+        <h4>◐ Exploratory (test before locking)</h4>
+        <ul>
+          <li>Exact green/oxblood values — confirm on-fabric and on embroidery thread.</li>
+          <li>Whether the emblem or the wordmark leads on caps.</li>
+          <li>GSM / fabric specs shown in mockups are <b>placeholders</b> — confirm with the maker.</li>
+          <li>Riviera as a seasonal sub-lane; Analog as a one-off capsule.</li>
+          <li>Member-numbering — real hand-numbering vs. printed.</li>
+        </ul>
+      </div>
+      <div class="note avoid">
+        <h4>✕ Never (out of bounds)</h4>
+        <ul>
+          <li>Cartoon pickles, jars, dill puns, “big dill”. Ever.</li>
+          <li>A founding year or any invented heritage / awards / claims.</li>
+          <li>Fake luxury crests, borrowed French/Italian “maison” language.</li>
+          <li>Generic Sporty &amp; Rich coastal-club copies, palm trees, flames, smileys.</li>
+          <li>Big logo slammed across the chest as the main event.</li>
+          <li>Winking too hard — if the joke needs explaining, cut it.</li>
+        </ul>
+      </div>
+      <div class="note appr">
+        <h4>⧉ Needs your approval</h4>
+        <ul>
+          <li>Sign off <b>Route B</b> as the direction (or redirect).</li>
+          <li>Confirm collection name <b>“Vol. 01 — The Off-Season”</b>.</li>
+          <li>Approve “Private Leisure Dept.” as the standing descriptor.</li>
+          <li>Green-light building final logo SVG artwork + type licences.</li>
+          <li>Then: Stage 3 — the Vol. 01 garment collection.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fmark">PICKLE</div>
+    <p>Private Leisure Dept. · Visual Identity Vol. 01 · For recreational use only</p>
+  </div>
+</footer>
+
+<script>
+/* ---------- Route switching ---------- */
+(function(){
+  var body = document.body;
+  var btns = Array.prototype.slice.call(document.querySelectorAll('[data-route-btn]'));
+  var reset = document.querySelector('[data-reset]');
+  function setRoute(r){
+    body.setAttribute('data-route', r);
+    btns.forEach(function(b){
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-route-btn') === r));
+    });
+  }
+  btns.forEach(function(b){
+    b.addEventListener('click', function(){ setRoute(b.getAttribute('data-route-btn')); });
+  });
+  if (reset) reset.addEventListener('click', function(){
+    setRoute('official');
+    document.getElementById('routes').scrollIntoView({behavior: (matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto':'smooth'), block:'start'});
+  });
+  if (!body.getAttribute('data-route')) setRoute('official');
+})();
+
+/* ---------- Colour swatches ---------- */
+(function(){
+  var colours = [
+    ['Bisque Cream','#F1E8D4','Primary neutral ground','Backgrounds, garments, packaging',0,1,1],
+    ['Chalk','#FAF5E9','Lightest paper','Website background, reversed type',0,1,1],
+    ['Faded Black / Ink','#211E18','Primary text & line','Type, rules, stamps, dark garments',1,1,0],
+    ['Bottle Green','#24382C','Signature accent','Emblem, caps, back-prints, boxes',1,1,0],
+    ['Club Navy','#1F2A44','Alt dark / Riviera core','Deep garments, formal lockups',1,1,0],
+    ['Stamp Oxblood','#A5382A','Accent / stamp','Seals, sub-lines, sticker, warnings',1,1,0],
+    ['Brass Ochre','#A8823C','Metallic / thread','Embroidery, foil, hairline detail',1,1,0],
+    ['Sea Blue','#3E7CB1','Riviera accent','Summer caps, stripes, story tiles',1,1,0],
+    ['Tomato Red','#D14B3C','Summer accent','One loud tee, accents, stickers',1,1,0],
+    ['Marigold','#E3A02A','Warm accent','Highlights, seasonal caps',1,1,0],
+    ['Olive','#6E7449','Earth accent','Garments, back-prints, calm tiles',1,1,0],
+    ['Sage','#9BA783','Soft accent','Light garments, backgrounds',1,1,1],
+    ['Terracotta','#C0663C','Warm accent','Analog capsule, garments',1,1,0],
+    ['Chocolate','#4A342A','Dark warm','Premium packaging, caps, type on light',1,1,0],
+    ['Washed Grey','#8E897B','Neutral mid','Secondary text, mono labels, liners',1,1,1],
+    ['Faded Teal','#2F6E6A','Analog accent','Capsule graphics, caps',1,1,0]
+  ];
+  var el = document.getElementById('swatches');
+  el.innerHTML = colours.map(function(c){
+    var emb = c[4] ? '<b class="yes">Embroidery ✓</b>' : '<b class="no">Embroidery —</b>';
+    var scr = c[5] ? '<b class="yes">Screen ✓</b>' : '<b class="no">Screen —</b>';
+    var web = c[6] ? '<b class="yes">Web BG ✓</b>' : '<b class="no">Web BG —</b>';
+    return '<div class="sw"><div class="chip" style="background:'+c[1]+'"></div><div class="sw-body">'+
+      '<div class="sw-name">'+c[0]+'</div><div class="sw-hex">'+c[1]+'</div>'+
+      '<div class="sw-role"><b style="color:var(--ink)">'+c[2]+'.</b> '+c[3]+'.</div>'+
+      '<div class="sw-tags">'+emb+scr+web+'</div></div></div>';
+  }).join('');
+})();
+
+/* ---------- Colour combinations ---------- */
+(function(){
+  var combos = [
+    ['Riviera',['#EFE7D6','#3E7CB1','#182338','#D14B3C'],'Cream, sea blue, navy, tomato — the sunny fallback.'],
+    ['Sport Club',['#F1E8D4','#24382C','#A8823C','#211E18'],'Bisque, bottle green, brass, ink — the house default.'],
+    ['Vintage Leisure',['#EEE3CB','#C0663C','#2F6E6A','#241F17'],'Paper, terracotta, teal, vinyl black — Analog capsule.'],
+    ['Darker Premium',['#211E18','#A8823C','#4A342A','#8E897B'],'Ink, brass, chocolate, grey — winter / hats / boxes.'],
+    ['Summer Accent',['#FAF5E9','#E3A02A','#D14B3C','#3E7CB1'],'Chalk, marigold, tomato, sea blue — the loud drop.'],
+    ['Minimal Mono',['#FAF5E9','#211E18','#8E897B','#E7DDC6'],'Chalk, ink, grey, ecru — the quiet everyday.']
+  ];
+  document.getElementById('combos').innerHTML = combos.map(function(k){
+    return '<div class="combo"><div class="cname">'+k[0]+'</div><div class="bar">'+
+      k[1].map(function(h){return '<span style="background:'+h+'"></span>';}).join('')+
+      '</div><div class="cnote">'+k[2]+'</div></div>';
+  }).join('');
+})();
+
+/* ---------- Copy gallery ---------- */
+(function(){
+  // [text, category, recommended, big(display style)]
+  var lines = [
+    // brand
+    ['Private Leisure Department.','brand',1,1],
+    ['Officially off duty.','brand',1,0],
+    ['A serious approach to doing very little.','brand',1,0],
+    ['Members only. Everyone welcome.','brand',1,0],
+    ['Not a big deal. Just well made.','brand',1,0],
+    ['Take it easy. Professionally.','brand',0,0],
+    ['Serious clothes, silly name.','brand',0,0],
+    ['Applied leisure, since recently.','brand',1,0],
+    ['The least demanding club you’ll ever join.','brand',0,0],
+    // tee
+    ['PRIVATE LEISURE DEPT.','tee',1,1],
+    ['FOR RECREATIONAL USE ONLY','tee',1,1],
+    ['DEPT. OF DOING NOTHING','tee',1,1],
+    ['NON-COMPETITIVE SPORTS DIVISION','tee',1,1],
+    ['THE OFF-SEASON','tee',1,1],
+    ['LICENCED TO LOUNGE','tee',0,1],
+    ['SLOW SERVICE CLUB','tee',0,1],
+    ['GONE SWIMMING · BACK NEVER','tee',0,1],
+    ['PICKLE S.C. — SOCIAL CLUB','tee',0,1],
+    // cap
+    ['OFF DUTY','cap',1,1],
+    ['MEMBER','cap',1,1],
+    ['LEISURE DEPT.','cap',1,1],
+    ['NO RUSH','cap',1,1],
+    ['PKL ATHLETIC','cap',0,1],
+    ['THE CLUB','cap',0,1],
+    ['OUT OF OFFICE','cap',0,1],
+    // pack
+    ['Handle at your leisure.','pack',1,0],
+    ['This side up. Or don’t.','pack',1,0],
+    ['Contents: one good thing.','pack',1,0],
+    ['Inspected by someone who cares.','pack',1,0],
+    ['Officially yours now.','pack',1,0],
+    ['Keep. Wash cold. Repeat for years.','pack',0,0],
+    ['Property of a member.','pack',0,0],
+    // web
+    ['This page is off duty.','web',1,0],
+    ['We email rarely. Almost never. That’s the point.','web',1,0],
+    ['Nothing in your bag yet. Understandable.','web',1,0],
+    ['Gone. Quietly.','web',0,0],
+    ['Filed. It’s yours.','web',0,0]
+  ];
+  var catName = {brand:'Brand', tee:'T-Shirt', cap:'Cap', pack:'Packaging', web:'Website'};
+  var grid = document.getElementById('copyGrid');
+  function render(cat){
+    grid.innerHTML = lines.filter(function(l){ return cat==='all' || l[1]===cat; }).map(function(l){
+      return '<div class="q'+(l[3]?' big':'')+'"><div class="qtext">'+l[0]+'</div>'+
+        '<div class="qmeta"><span>'+catName[l[1]]+'</span>'+(l[2]?'<span class="star">★ recommended</span>':'<span>alt</span>')+'</div></div>';
+    }).join('');
+  }
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.copy-tab'));
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){
+      tabs.forEach(function(x){ x.setAttribute('aria-pressed', String(x===t)); });
+      render(t.getAttribute('data-cat'));
+    });
+  });
+  render('all');
+})();
+</script>
+</body>
+</html>
