@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--PICKLE-ARTIFACT-HEAD-->
+<title>PICKLE Vol. 01 Lookbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,900;1,9..144,500&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+:root{
+  color-scheme: light;
+  --paper:#F1E8D4; --paper-2:#E7DDC6; --chalk:#FAF5E9;
+  --ink:#211E18; --ink-soft:#4A4438;
+  --accent:#24382C; --accent-2:#A5382A; --brass:#A8823C; --muted:#8E897B;
+  --line:rgba(33,30,24,.22); --line-soft:rgba(33,30,24,.12);
+  --font-display:'Archivo', system-ui, sans-serif;
+  --font-serif:'Fraunces', Georgia, serif;
+  --font-mono:'Space Mono', ui-monospace, monospace;
+  --shadow:0 1px 0 rgba(33,30,24,.08), 0 18px 40px -28px rgba(33,30,24,.5);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{animation:none!important; transition:none!important} }
+body{margin:0; background:var(--chalk); color:var(--ink); font-family:var(--font-display); font-size:16px; line-height:1.55; -webkit-font-smoothing:antialiased}
+img{max-width:100%} [hidden]{display:none!important}
+h1,h2,h3,h4{margin:0; text-wrap:balance} p{margin:0}
+.wrap{width:100%; max-width:1120px; margin:0 auto; padding-inline:20px}
+.mono{font-family:var(--font-mono)}
+.sec-num{font-family:var(--font-mono); font-size:12px; letter-spacing:.2em; color:var(--muted)}
+.eyebrow{font-family:var(--font-mono); font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:var(--accent-2)}
+
+/* nav */
+.nav{position:sticky; top:0; z-index:50; background:color-mix(in srgb,var(--chalk) 88%, transparent); backdrop-filter:blur(8px); border-bottom:1px solid var(--line-soft)}
+.nav-in{display:flex; align-items:center; gap:18px; height:56px}
+.nav-brand{font-family:var(--font-display); font-weight:800; letter-spacing:.32em; font-size:15px; text-transform:uppercase}
+.nav-brand small{font-family:var(--font-mono); font-weight:400; font-size:10px; letter-spacing:.18em; color:var(--accent-2); margin-left:8px}
+.nav-links{display:flex; gap:2px; margin-left:auto; overflow-x:auto; scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{font-family:var(--font-mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; text-decoration:none; color:var(--ink-soft); padding:8px 10px; white-space:nowrap; border-radius:2px}
+.nav-links a:hover{color:var(--ink); background:var(--line-soft)}
+.nav-links a:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+
+section{padding-block:60px; border-bottom:1px solid var(--line-soft)}
+.sec-head{display:flex; align-items:baseline; gap:16px; flex-wrap:wrap; margin-bottom:26px}
+.sec-head h2{font-family:var(--font-display); font-weight:800; font-size:clamp(24px,4.2vw,38px); letter-spacing:-.01em; text-transform:uppercase}
+.sec-head .lead{color:var(--ink-soft); max-width:62ch; font-size:15px}
+
+/* cover */
+.cover{position:relative; overflow:hidden; background:
+  radial-gradient(120% 90% at 84% 6%, color-mix(in srgb,var(--brass) 26%, transparent), transparent 55%),
+  radial-gradient(100% 80% at 4% 98%, color-mix(in srgb,var(--accent) 22%, transparent), transparent 60%), var(--paper);
+  padding-block:52px}
+.cover .frame{border:1.5px solid var(--ink); padding:clamp(22px,5vw,50px); position:relative}
+.cover .frame::before{content:""; position:absolute; inset:6px; border:1px solid var(--line)}
+.cover-top{display:flex; justify-content:space-between; gap:12px; font-family:var(--font-mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-soft); flex-wrap:wrap}
+.cover-title{font-family:var(--font-display); font-weight:800; text-transform:uppercase; letter-spacing:.02em; font-size:clamp(40px,10vw,104px); line-height:.9; margin:clamp(16px,3vw,26px) 0 6px}
+.cover-title em{font-family:var(--font-serif); font-style:italic; font-weight:900; text-transform:none; color:var(--accent)}
+.cover-sub{display:flex; align-items:center; gap:14px; flex-wrap:wrap; border-top:1px solid var(--line); padding-top:16px; margin-top:10px}
+.cover-sub .stmt{font-family:var(--font-serif); font-style:italic; font-size:clamp(16px,2.4vw,21px); max-width:46ch}
+.chip{font-family:var(--font-mono); font-size:12px; letter-spacing:.18em; text-transform:uppercase; border:1px solid var(--ink); padding:7px 12px; white-space:nowrap; background:var(--accent); color:var(--chalk)}
+.cover-stats{display:flex; gap:26px; flex-wrap:wrap; margin-top:20px; font-family:var(--font-mono); font-size:12px; letter-spacing:.06em; color:var(--ink-soft)}
+.cover-stats b{display:block; font-family:var(--font-display); font-weight:800; font-size:26px; color:var(--ink); letter-spacing:0}
+
+/* filter + product grid */
+.filter{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:22px}
+.filter button{appearance:none; cursor:pointer; font-family:var(--font-mono); font-size:12px; letter-spacing:.12em; text-transform:uppercase; background:transparent; border:1px solid var(--line); color:var(--ink-soft); padding:10px 15px; border-radius:2px}
+.filter button[aria-pressed="true"]{background:var(--ink); color:var(--chalk); border-color:var(--ink)}
+.filter button:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+
+.grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px}
+.card{border:1px solid var(--line); background:var(--paper); display:flex; flex-direction:column; overflow:hidden; box-shadow:var(--shadow)}
+.card .art{aspect-ratio:1/1; display:grid; place-items:center; padding:18px; background:
+  repeating-linear-gradient(45deg, transparent 0 13px, color-mix(in srgb,var(--ink) 3%, transparent) 13px 14px), var(--paper-2); transition:background .25s}
+.card .art svg{width:86%; height:auto; display:block}
+.card .body{padding:15px 16px; display:flex; flex-direction:column; gap:9px; border-top:1px solid var(--line)}
+.card .role{font-family:var(--font-mono); font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent-2)}
+.card .nm{display:flex; justify-content:space-between; gap:10px; align-items:baseline}
+.card .nm b{font-family:var(--font-display); font-weight:800; font-size:17px; text-transform:uppercase; letter-spacing:.01em}
+.card .nm span{font-family:var(--font-mono); font-size:13px; color:var(--ink); white-space:nowrap}
+.card .code{font-family:var(--font-mono); font-size:10.5px; letter-spacing:.08em; color:var(--muted)}
+.card .blurb{font-size:13px; color:var(--ink-soft); line-height:1.45}
+.ways{display:flex; gap:7px; flex-wrap:wrap; margin-top:2px}
+.wchip{width:22px; height:22px; border-radius:50%; border:1px solid var(--line); cursor:pointer; padding:0; position:relative}
+.wchip[aria-pressed="true"]{outline:2px solid var(--ink); outline-offset:2px}
+.wchip:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.wname{font-family:var(--font-mono); font-size:11px; color:var(--ink-soft); letter-spacing:.04em}
+
+/* colour story */
+.story{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:12px}
+.sc{border:1px solid var(--line); overflow:hidden; background:var(--paper)}
+.sc .b{height:70px} .sc .t{padding:10px 11px}
+.sc .t b{font-family:var(--font-display); font-weight:700; font-size:13px; text-transform:uppercase; display:block}
+.sc .t span{font-family:var(--font-mono); font-size:10.5px; color:var(--ink-soft)}
+.sc .t em{font-style:normal; font-size:11.5px; color:var(--ink-soft); display:block; margin-top:5px}
+.story-note{margin-top:16px; border-left:3px solid var(--accent-2); background:color-mix(in srgb,var(--accent-2) 7%, var(--paper)); padding:14px 16px; font-size:14px; color:var(--ink-soft)}
+.story-note b{color:var(--ink)}
+
+/* linesheet */
+.tbl-wrap{overflow-x:auto; border:1px solid var(--line)}
+table{border-collapse:collapse; width:100%; min-width:640px; background:var(--paper); font-size:13.5px}
+th,td{text-align:left; padding:11px 13px; border-bottom:1px solid var(--line-soft)}
+th{font-family:var(--font-mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); background:var(--paper-2)}
+td.code{font-family:var(--font-mono); font-size:11.5px; color:var(--ink-soft); white-space:nowrap}
+td b{font-family:var(--font-display); font-weight:700; text-transform:uppercase; font-size:13px}
+td .rl{font-family:var(--font-mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent-2)}
+td.price{font-family:var(--font-mono); white-space:nowrap; text-align:right; font-variant-numeric:tabular-nums}
+tr:last-child td{border-bottom:none}
+
+/* wardrobe logic */
+.ward{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px}
+.wcard{border:1px solid var(--line); background:var(--paper); padding:18px}
+.wcard h4{font-family:var(--font-mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; margin-bottom:11px; padding-bottom:10px; border-bottom:1px solid var(--line-soft); display:flex; justify-content:space-between; gap:8px}
+.wcard h4 span{color:var(--accent-2)}
+.wcard p{font-size:13.5px; color:var(--ink-soft); line-height:1.5}
+.wcard .look{font-family:var(--font-serif); font-style:italic; font-size:15px; color:var(--ink); margin-top:10px}
+
+/* notes */
+.notes-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px}
+.note{border:1px solid var(--line); background:var(--paper); padding:18px}
+.note h4{font-family:var(--font-mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; margin-bottom:12px; padding-bottom:10px; border-bottom:1px solid var(--line-soft)}
+.note.rec h4{color:var(--accent)} .note.exp h4{color:var(--brass)} .note.appr h4{color:var(--ink)}
+.note ul{margin:0; padding-left:16px; display:flex; flex-direction:column; gap:9px}
+.note li{font-size:13.5px; color:var(--ink-soft); line-height:1.45}
+
+footer{padding-block:40px; text-align:center}
+footer .fmark{font-family:var(--font-display); font-weight:800; letter-spacing:.34em; text-transform:uppercase; font-size:14px}
+footer p{font-family:var(--font-mono); font-size:11px; letter-spacing:.1em; color:var(--muted); margin-top:10px}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Section navigation">
+  <div class="wrap nav-in">
+    <span class="nav-brand">PICKLE <small>VOL. 01</small></span>
+    <div class="nav-links">
+      <a href="#cover">Cover</a>
+      <a href="#line">The Line</a>
+      <a href="#colour">Colour Story</a>
+      <a href="#sheet">Linesheet</a>
+      <a href="#wears">How It Wears</a>
+      <a href="#notes">Notes</a>
+    </div>
+  </div>
+</nav>
+
+<!-- COVER -->
+<header class="cover" id="cover">
+  <div class="wrap">
+    <div class="frame">
+      <div class="cover-top">
+        <span>Private Leisure Department</span>
+        <span>Collection Linesheet · Lookbook</span>
+        <span>Reg. No. PKL-VOL-01</span>
+      </div>
+      <div class="cover-title">VOL. 01<br><em>The Off-Season</em></div>
+      <div class="cover-sub">
+        <span class="chip">7 styles · 1 small wardrobe</span>
+        <p class="stmt">A tight, collectible first drop for people who are professionally off-duty. Everything reads as issued kit of the department.</p>
+      </div>
+      <div class="cover-stats">
+        <div><b>4</b> T-shirt designs</div>
+        <div><b>2</b> caps · the hero</div>
+        <div><b>1</b> short</div>
+        <div><b>12</b> colours across the drop</div>
+        <div><b>0</b> literal pickles</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- THE LINE -->
+<section id="line">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">01 / The Line</span></div>
+    <div class="sec-head" style="margin-top:-14px">
+      <h2>Vol. 01 — Every Style</h2>
+      <p class="lead">Seven pieces, no filler. Click any colour dot to see that colourway on the garment. Mockups are clean graphic renders of the <em>designs and placements</em> — final garment patterns come after sign-off.</p>
+    </div>
+
+    <div class="filter" role="tablist" aria-label="Category filter">
+      <button role="tab" data-cat="all" aria-pressed="true">All (7)</button>
+      <button role="tab" data-cat="cap" aria-pressed="false">Caps (2)</button>
+      <button role="tab" data-cat="tee" aria-pressed="false">T-Shirts (4)</button>
+      <button role="tab" data-cat="short" aria-pressed="false">Shorts (1)</button>
+    </div>
+
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<!-- COLOUR STORY -->
+<section id="colour">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">02 / Colour Story</span></div>
+    <div class="sec-head" style="margin-top:-14px">
+      <h2>The Drop's Palette</h2>
+      <p class="lead">A disciplined core carries the drop; warm accents rotate; exactly one loud colour. Everything mixes with everything.</p>
+    </div>
+    <div class="story" id="story"></div>
+    <div class="story-note"><b>The rule:</b> Bisque, bottle green and navy are the spine (they repeat every season). Sage, olive, terracotta, sea blue and chalk are the rotating warm accents. <b>Tomato is the single loud colour</b> — it appears on one tee only, as punctuation. No colour exists just to fill a grid.</div>
+  </div>
+</section>
+
+<!-- LINESHEET -->
+<section id="sheet">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">03 / Linesheet</span></div>
+    <div class="sec-head" style="margin-top:-14px">
+      <h2>The Buy Sheet</h2>
+      <p class="lead">SKU codes follow the archive system: VOL · category · design · colourway. Prices are <b>hypotheses</b> in INR for a premium-accessible position — confirm against landed cost.</p>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>SKU base</th><th>Style</th><th>Colourways</th><th>Price (hyp.)</th></tr></thead>
+        <tbody id="sheetBody"></tbody>
+      </table>
+    </div>
+    <div class="story-note" style="border-left-color:var(--accent)">
+      <b>Buy-plan hypothesis:</b> over-index on <b>caps</b> (entry + reach, lowest return risk) and the <b>Issue Tee</b> in Bisque/Navy (backbone). Treat the Tomato Athletic tee as a limited, hype-worthy hero — deliberately under-buy it so it sells out and seeds demand. Shorts: modest first buy, learn the fit.
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WEARS -->
+<section id="wears">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">04 / How It Wears</span></div>
+    <div class="sec-head" style="margin-top:-14px">
+      <h2>One Small Wardrobe</h2>
+      <p class="lead">Vol. 01 is built so a member can dress for a whole slow week from one drop — and so each of the three audience archetypes has an obvious way in.</p>
+    </div>
+    <div class="ward">
+      <div class="wcard"><h4>Everyday <span>backbone</span></h4><p>Issue Tee + Off-Duty Short + Member Cap. The uniform. Buy in threes, wears in over years.</p><p class="look">Bisque tee, olive short, green cap.</p></div>
+      <div class="wcard"><h4>The statement <span>be seen</span></h4><p>Department or Athletic tee doing the talking, everything else quiet. One loud piece, styled down.</p><p class="look">Tomato Athletic tee, navy cap, bisque short.</p></div>
+      <div class="wcard"><h4>The quiet flex <span>Aarav</span></h4><p>All-tonal, marks barely there. Reads expensive because it doesn't try.</p><p class="look">Faded-black Issue tee, black short, washed-grey cap.</p></div>
+      <div class="wcard"><h4>The entry <span>Kabir</span></h4><p>Start with a cap — the accessible hero — then graduate to a tee. One hero piece over affordable basics.</p><p class="look">Green Member Cap, then the Issue Tee.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- NOTES -->
+<section id="notes" style="border-bottom:none">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">05 / Notes</span></div>
+    <div class="sec-head" style="margin-top:-14px">
+      <h2>What's Set, What's Open</h2>
+      <p class="lead">This is the design + merchandising direction. Fabric specs, patterns and sampling follow your sign-off.</p>
+    </div>
+    <div class="notes-grid">
+      <div class="note rec"><h4>✓ Recommended</h4>
+        <ul>
+          <li>7-piece drop: 4 tees, 2 caps, 1 short. No filler.</li>
+          <li>Caps as hero/entry; Issue Tee as backbone; Department Tee as flagship.</li>
+          <li>Tomato used once, on the Athletic tee, as the single loud note.</li>
+          <li>Archive-style SKU coding (VOL·CAT·DESIGN·COLOUR).</li>
+          <li>Under-buy the statement tee; over-buy caps + Issue Tee.</li>
+        </ul>
+      </div>
+      <div class="note exp"><h4>◐ Exploratory</h4>
+        <ul>
+          <li>Fabric weights (tees ~240gsm, etc.) are <b>placeholders</b> — confirm with the maker.</li>
+          <li>Prices are hypotheses — validate against landed cost + positioning.</li>
+          <li>Cap construction: structured 6-panel vs. unstructured — sample both.</li>
+          <li>Short length (~7") and closure (drawcord vs. elastic).</li>
+          <li>Whether Department back-print runs large or mid-scale.</li>
+        </ul>
+      </div>
+      <div class="note appr"><h4>⧉ Needs approval</h4>
+        <ul>
+          <li>Sign off the 7-style lineup and roles.</li>
+          <li>Confirm colourway list per style.</li>
+          <li>Approve price architecture (or give target margins).</li>
+          <li>Green-light tech-pack + sampling for the hero pieces first.</li>
+          <li>Then: photography brief + the e-commerce build.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fmark">PICKLE</div>
+    <p>Vol. 01 — The Off-Season · Private Leisure Dept. · For recreational use only</p>
+  </div>
+</footer>
+
+<script>
+/* ---------- Colourways ---------- */
+var W = {
+  bisque:{g:'#EDE4CF', ink:'#211E18', ac:'#24382C', n:'Bisque'},
+  navy:{g:'#1F2A44', ink:'#EDE4CF', ac:'#A8823C', n:'Club Navy'},
+  green:{g:'#24382C', ink:'#F1E8D4', ac:'#A8823C', n:'Bottle Green'},
+  black:{g:'#211E18', ink:'#EDE4CF', ac:'#A8823C', n:'Faded Black'},
+  sage:{g:'#9BA783', ink:'#211E18', ac:'#24382C', n:'Sage'},
+  grey:{g:'#8E897B', ink:'#211E18', ac:'#F1E8D4', n:'Washed Grey'},
+  chalk:{g:'#FAF5E9', ink:'#211E18', ac:'#A5382A', n:'Chalk'},
+  cream:{g:'#EFE7D6', ink:'#182338', ac:'#A5382A', n:'Cream'},
+  tomato:{g:'#D14B3C', ink:'#F8F2E6', ac:'#211E18', n:'Tomato'},
+  olive:{g:'#6E7449', ink:'#F1E8D4', ac:'#A8823C', n:'Olive'},
+  seablue:{g:'#3E7CB1', ink:'#F8F2E6', ac:'#182338', n:'Sea Blue'},
+  terracotta:{g:'#C0663C', ink:'#F8F2E6', ac:'#211E18', n:'Terracotta'}
+};
+
+/* ---------- Garment SVG builders ---------- */
+var TEE_F='M64 34 L40 46 L30 78 L48 88 L52 74 L52 176 L148 176 L148 74 L152 88 L170 78 L160 46 L136 34 C130 46 116 50 100 50 C84 50 70 46 64 34 Z';
+var TEE_B='M64 34 L40 46 L30 78 L48 88 L52 74 L52 176 L148 176 L148 74 L152 88 L170 78 L160 46 L136 34 C132 44 118 48 100 48 C82 48 68 44 64 34 Z';
+function esc(s){return s;}
+function teeShell(path,g){return '<path d="'+path+'" fill="'+g+'" stroke="rgba(0,0,0,.28)" stroke-width="1.4"/>';}
+
+function svgBlank(c){return '<svg viewBox="0 0 200 200" role="img" aria-label="Issue Tee front, '+c.n+'">'+teeShell(TEE_F,c.g)+
+  '<circle cx="118" cy="88" r="15" fill="none" stroke="'+c.ac+'" stroke-width="1.4"/>'+
+  '<text x="118" y="85" text-anchor="middle" font-family="Space Mono,monospace" font-size="4.4" letter-spacing="0.6" fill="'+c.ac+'">MEMBER</text>'+
+  '<text x="118" y="93" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="7" fill="'+c.ink+'">PKL</text></svg>';}
+
+function svgDept(c){return '<svg viewBox="0 0 200 200" role="img" aria-label="Department Tee back, '+c.n+'">'+teeShell(TEE_B,c.g)+
+  '<circle cx="100" cy="86" r="26" fill="none" stroke="'+c.ink+'" stroke-width="1"/>'+
+  '<text x="100" y="80" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="9" letter-spacing="1" fill="'+c.ink+'">PRIVATE</text>'+
+  '<text x="100" y="92" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="9" letter-spacing="1" fill="'+c.ink+'">LEISURE</text>'+
+  '<text x="100" y="104" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="9" letter-spacing="1" fill="'+c.ac+'">DEPT.</text>'+
+  '<text x="100" y="130" text-anchor="middle" font-family="Space Mono,monospace" font-size="5" letter-spacing="1.8" fill="'+c.ink+'">FOR RECREATIONAL USE ONLY</text></svg>';}
+
+function svgAth(c){return '<svg viewBox="0 0 200 200" role="img" aria-label="Non-Competitive Division Tee back, '+c.n+'">'+teeShell(TEE_B,c.g)+
+  '<text x="100" y="86" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="13" letter-spacing="1.5" fill="'+c.ink+'">NON-</text>'+
+  '<text x="100" y="100" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="13" letter-spacing="1.5" fill="'+c.ink+'">COMPETITIVE</text>'+
+  '<line x1="66" y1="108" x2="134" y2="108" stroke="'+c.ac+'" stroke-width="1"/>'+
+  '<text x="100" y="126" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="700" font-size="9" letter-spacing="3" fill="'+c.ink+'">SPORTS DIVISION</text>'+
+  '<text x="100" y="150" text-anchor="middle" font-family="Space Mono,monospace" font-size="6" letter-spacing="4" fill="'+c.ac+'">PKL</text></svg>';}
+
+function svgOff(c){return '<svg viewBox="0 0 200 200" role="img" aria-label="Off-Season Tee front, '+c.n+'">'+teeShell(TEE_F,c.g)+
+  '<text x="100" y="92" text-anchor="middle" font-family="Fraunces,serif" font-style="italic" font-weight="500" font-size="15" fill="'+c.ink+'">The Off-Season</text>'+
+  '<text x="100" y="108" text-anchor="middle" font-family="Space Mono,monospace" font-size="5.4" letter-spacing="3" fill="'+c.ac+'">VOL. 01</text>'+
+  '<text x="100" y="170" text-anchor="middle" font-family="Space Mono,monospace" font-size="4.4" letter-spacing="2" fill="'+c.ink+'" opacity=".8">GONE SWIMMING · BACK NEVER</text></svg>';}
+
+function svgCap(c){return '<svg viewBox="0 0 200 160" role="img" aria-label="Member Cap, '+c.n+'">'+
+  '<path d="M28 96 C28 50 172 50 172 96 L172 104 L28 104 Z" fill="'+c.g+'" stroke="rgba(0,0,0,.28)" stroke-width="1.4"/>'+
+  '<path d="M26 104 C70 122 150 122 150 104 C150 116 120 128 92 128 C60 128 34 118 26 104 Z" fill="'+c.g+'" stroke="rgba(0,0,0,.28)" stroke-width="1.2"/>'+
+  '<line x1="100" y1="52" x2="100" y2="104" stroke="rgba(0,0,0,.18)" stroke-width="0.8"/>'+
+  '<text x="100" y="90" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="15" letter-spacing="1.5" fill="'+c.ac+'">OFF DUTY</text>'+
+  '<circle cx="100" cy="53" r="2" fill="'+c.ac+'"/></svg>';}
+
+function svgCapDad(c){return '<svg viewBox="0 0 200 160" role="img" aria-label="Leisure Cap, '+c.n+'">'+
+  '<path d="M32 100 C32 58 168 58 168 102 L168 108 L32 108 Z" fill="'+c.g+'" stroke="rgba(0,0,0,.28)" stroke-width="1.4"/>'+
+  '<path d="M30 108 C72 124 150 124 150 108 C150 118 122 128 94 128 C64 128 38 120 30 108 Z" fill="'+c.g+'" stroke="rgba(0,0,0,.28)" stroke-width="1.2"/>'+
+  '<circle cx="100" cy="86" r="13" fill="none" stroke="'+c.ac+'" stroke-width="1.2"/>'+
+  '<text x="100" y="89" text-anchor="middle" font-family="Space Mono,monospace" font-size="6" letter-spacing="1.5" fill="'+c.ink+'">MEMBER</text></svg>';}
+
+function svgShort(c){return '<svg viewBox="0 0 200 180" role="img" aria-label="Off-Duty Short, '+c.n+'">'+
+  '<path d="M46 44 L154 44 L150 154 L110 154 L100 96 L90 154 L50 154 Z" fill="'+c.g+'" stroke="rgba(0,0,0,.28)" stroke-width="1.4"/>'+
+  '<rect x="46" y="44" width="108" height="11" fill="rgba(0,0,0,.14)"/>'+
+  '<line x1="94" y1="50" x2="106" y2="50" stroke="'+c.ac+'" stroke-width="2"/>'+
+  '<text x="70" y="132" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="8" letter-spacing="1" fill="'+c.ac+'">PKL</text>'+
+  '<text x="70" y="140" text-anchor="middle" font-family="Space Mono,monospace" font-size="3.6" letter-spacing="1" fill="'+c.ink+'" opacity=".85">LEISURE DEPT.</text></svg>';}
+
+var BUILD={blank:svgBlank, department:svgDept, athletic:svgAth, offseason:svgOff, cap:svgCap, capdad:svgCapDad, short:svgShort};
+
+/* ---------- Products ---------- */
+var P=[
+ {code:'PKL-01-CAP-MBR', name:'The Member Cap', cat:'cap', type:'cap', role:'Hero · Entry', price:'₹1,600',
+  blurb:'Structured 6-panel. Brass “OFF DUTY” front, “PKL” side embroidery. The fastest way onto heads.',
+  ways:['green','navy','bisque','tomato','grey']},
+ {code:'PKL-01-CAP-LSR', name:'The Leisure Cap', cat:'cap', type:'capdad', role:'Hero · softer',  price:'₹1,500',
+  blurb:'Unstructured 6-panel dad cap. Small “MEMBER” + emblem. Worn-in from day one.',
+  ways:['cream','olive','black','seablue']},
+ {code:'PKL-01-TEE-ISS', name:'The Issue Tee', cat:'tee', type:'blank', role:'Backbone · safest', price:'₹1,900',
+  blurb:'Heavyweight everyday tee (≈240gsm, placeholder). Tiny left-chest PKL emblem. The one you buy three of.',
+  ways:['bisque','navy','green','black','sage','grey']},
+ {code:'PKL-01-TEE-DEPT', name:'The Department Tee', cat:'tee', type:'department', role:'Flagship · signature', price:'₹2,400',
+  blurb:'Small chest dept. line; the seal print on the back. The identity, worn. (Back shown.)',
+  ways:['bisque','green','navy','chalk']},
+ {code:'PKL-01-TEE-ATH', name:'Non-Competitive Div. Tee', cat:'tee', type:'athletic', role:'Most distinctive · statement', price:'₹2,500',
+  blurb:'Collegiate athletic spellout. The one loud colourway: Tomato. Deliberately under-bought. (Back shown.)',
+  ways:['cream','navy','tomato','olive']},
+ {code:'PKL-01-TEE-OFF', name:'The Off-Season Tee', cat:'tee', type:'offseason', role:'The quiet-witty one', price:'₹2,300',
+  blurb:'Fraunces italic “The Off-Season” chest, “VOL. 01” beneath, a dry line at the hem.',
+  ways:['chalk','seablue','terracotta','black']},
+ {code:'PKL-01-SHT-ODT', name:'The Off-Duty Short', cat:'short', type:'short', role:'Wardrobe completer', price:'₹2,600',
+  blurb:'Relaxed ≈7″ drawcord short. Tiny left-leg PKL hit. Ties the whole drop into outfits.',
+  ways:['bisque','navy','olive','black']}
+];
+
+/* ---------- Render product grid ---------- */
+var grid=document.getElementById('grid');
+function shortSku(code, wayKey){
+  var map={bisque:'BSQ',navy:'NVY',green:'BGN',black:'FBK',sage:'SGE',grey:'GRY',chalk:'CHK',cream:'CRM',tomato:'TOM',olive:'OLV',seablue:'SEA',terracotta:'TER'};
+  return code+'-'+map[wayKey];
+}
+function renderCard(p,i){
+  var first=p.ways[0];
+  var el=document.createElement('article');
+  el.className='card'; el.setAttribute('data-cat',p.cat);
+  el.innerHTML=
+    '<div class="art" data-art>'+BUILD[p.type](W[first])+'</div>'+
+    '<div class="body">'+
+      '<div class="role">'+p.role+'</div>'+
+      '<div class="nm"><b>'+p.name+'</b><span>'+p.price+'</span></div>'+
+      '<div class="code" data-code>'+shortSku(p.code,first)+'</div>'+
+      '<div class="blurb">'+p.blurb+'</div>'+
+      '<div class="ways" role="group" aria-label="Colourways for '+p.name+'"></div>'+
+      '<div class="wname" data-wname>'+W[first].n+'</div>'+
+    '</div>';
+  var waysEl=el.querySelector('.ways');
+  var artEl=el.querySelector('[data-art]');
+  var nameEl=el.querySelector('[data-wname]');
+  var codeEl=el.querySelector('[data-code]');
+  p.ways.forEach(function(k,idx){
+    var b=document.createElement('button');
+    b.className='wchip'; b.type='button';
+    b.style.background=W[k].g;
+    b.setAttribute('aria-pressed', String(idx===0));
+    b.setAttribute('aria-label', W[k].n);
+    b.title=W[k].n;
+    b.addEventListener('click', function(){
+      artEl.innerHTML=BUILD[p.type](W[k]);
+      nameEl.textContent=W[k].n;
+      codeEl.textContent=shortSku(p.code,k);
+      waysEl.querySelectorAll('.wchip').forEach(function(x){x.setAttribute('aria-pressed', String(x===b));});
+    });
+    waysEl.appendChild(b);
+  });
+  return el;
+}
+P.forEach(function(p,i){ grid.appendChild(renderCard(p,i)); });
+
+/* ---------- Category filter ---------- */
+(function(){
+  var tabs=Array.prototype.slice.call(document.querySelectorAll('.filter button'));
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){
+      tabs.forEach(function(x){x.setAttribute('aria-pressed', String(x===t));});
+      var cat=t.getAttribute('data-cat');
+      grid.querySelectorAll('.card').forEach(function(c){
+        c.hidden = !(cat==='all' || c.getAttribute('data-cat')===cat);
+      });
+    });
+  });
+})();
+
+/* ---------- Colour story ---------- */
+(function(){
+  var story=[
+    ['green','Bottle Green','Spine','On caps, dept. prints, one tee'],
+    ['bisque','Bisque','Spine','The everyday ground'],
+    ['navy','Club Navy','Spine','Caps, tees, the safe dark'],
+    ['chalk','Chalk','Neutral','Lightest tee, summer'],
+    ['sage','Sage','Accent','Soft tee option'],
+    ['olive','Olive','Accent','Tees, shorts, calm'],
+    ['terracotta','Terracotta','Accent','Warm tee note'],
+    ['seablue','Sea Blue','Accent','Summer cap + tee'],
+    ['tomato','Tomato','Loud (once)','Athletic tee only'],
+    ['black','Faded Black','Neutral','The quiet flex']
+  ];
+  document.getElementById('story').innerHTML=story.map(function(s){
+    return '<div class="sc"><div class="b" style="background:'+W[s[0]].g+'"></div><div class="t"><b>'+s[1]+'</b><span>'+W[s[0]].g+'</span><em>'+s[2]+' · '+s[3]+'</em></div></div>';
+  }).join('');
+})();
+
+/* ---------- Linesheet ---------- */
+(function(){
+  document.getElementById('sheetBody').innerHTML=P.map(function(p){
+    var names=p.ways.map(function(k){return W[k].n;}).join(', ');
+    return '<tr><td class="code">'+p.code+'</td>'+
+      '<td><b>'+p.name+'</b><div class="rl">'+p.role+'</div></td>'+
+      '<td>'+names+' <span style="color:var(--muted)">('+p.ways.length+')</span></td>'+
+      '<td class="price">'+p.price+'</td></tr>';
+  }).join('');
+})();
+</script>
+</body>
+</html>
