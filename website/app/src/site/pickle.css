@@ -1,0 +1,306 @@
+/* PICKLE token layer + component language. Loaded after Tailwind from styles.css. */
+
+@theme {
+  --color-chalk: #faf8f5;
+  --color-cream: #f2ede2;
+  --color-stone: #e3dcce;
+  --color-stone-deep: #cfc5b2;
+  --color-navy: #131922;
+  --color-navy-light: #232d3d;
+  --color-slate-ink: #586270;
+  --color-cricket: #1d4832;
+  --color-cricket-dark: #143323;
+  --color-stamp: #b53826;
+  --color-amber-faded: #e8b863;
+  --color-paper: #ffffff;
+
+  --font-sans: "Inter", "Helvetica Neue", -apple-system, sans-serif;
+  --font-serif: "Baskervville", Georgia, serif;
+
+  --ease-pickle: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  html {
+    background-color: var(--color-chalk);
+    color: var(--color-navy);
+    color-scheme: light;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    min-height: 100dvh;
+    background-color: var(--color-chalk);
+    color: var(--color-navy);
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "ss01", "cv11";
+  }
+  * {
+    border-color: var(--color-stone);
+  }
+  ::selection {
+    background: var(--color-cricket);
+    color: var(--color-chalk);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-cricket);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Type scale (PICKLE spec §03) */
+  .pk-display {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(2.5rem, 6vw, 5.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+  }
+  .pk-h1 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+  .pk-h2 {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 1.75rem;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+  .pk-h3 {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.25rem;
+    line-height: 1.3;
+  }
+  .pk-list-title {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 1.75rem;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+  @media (min-width: 768px) {
+    .pk-list-title {
+      font-size: 2.25rem;
+    }
+  }
+  .pk-body-lg {
+    font-size: 1.0625rem;
+  }
+  .pk-utility {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 0.8125rem;
+    line-height: 1.2;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .pk-micro {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 0.6875rem;
+    line-height: 1.3;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-variant-numeric: tabular-nums;
+  }
+  .pk-price {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    font-variant-numeric: tabular-nums;
+  }
+  .pk-button-type {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 0.75rem;
+    line-height: 1;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  /* Archival stamp: boxed metadata in hairline */
+  .pk-stamp {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid var(--color-stone-deep);
+    padding: 0.25rem 0.5rem;
+  }
+  .pk-stamp--red {
+    border-color: var(--color-stamp);
+    color: var(--color-stamp);
+  }
+
+  /* Plate: a labelled placeholder for photography that has not been shot.
+     The weave is drawn in CSS so the frame still reads as cloth. */
+  .pk-plate {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--color-cream);
+    border: 1px solid var(--color-stone);
+    isolation: isolate;
+  }
+  .pk-plate::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image:
+      repeating-linear-gradient(0deg, rgb(19 25 34 / 0.035) 0 1px, transparent 1px 3px),
+      repeating-linear-gradient(90deg, rgb(19 25 34 / 0.03) 0 1px, transparent 1px 4px),
+      repeating-linear-gradient(90deg, transparent 0 37px, rgb(19 25 34 / 0.05) 37px 39px, transparent 39px 91px);
+  }
+  .pk-plate--chalk {
+    background-color: var(--color-chalk);
+  }
+  .pk-plate--stone {
+    background-color: var(--color-stone);
+  }
+  .pk-plate--forest {
+    background-color: var(--color-cricket-dark);
+    color: var(--color-chalk);
+  }
+  .pk-plate--forest::before {
+    background-image:
+      repeating-linear-gradient(0deg, rgb(250 248 245 / 0.04) 0 1px, transparent 1px 3px),
+      repeating-linear-gradient(90deg, rgb(250 248 245 / 0.035) 0 1px, transparent 1px 4px);
+  }
+  .pk-plate--navy {
+    background-color: var(--color-navy);
+    color: var(--color-chalk);
+  }
+  .pk-plate--navy::before {
+    background-image:
+      repeating-linear-gradient(0deg, rgb(250 248 245 / 0.04) 0 1px, transparent 1px 3px),
+      repeating-linear-gradient(90deg, rgb(250 248 245 / 0.035) 0 1px, transparent 1px 4px);
+  }
+
+  /* Links and quiet CTAs */
+  .pk-link {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition:
+      background-size 350ms var(--ease-pickle),
+      color 180ms ease-out;
+  }
+  .pk-link:hover,
+  .pk-link:focus-visible {
+    background-size: 100% 1px;
+    color: var(--color-cricket);
+  }
+  .pk-ink-hover {
+    transition: color 180ms ease-out;
+  }
+  .pk-ink-hover:hover {
+    color: var(--color-cricket);
+  }
+
+  /* Horizontal rails */
+  .pk-rail {
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .pk-rail::-webkit-scrollbar {
+    display: none;
+  }
+  .pk-rail > * {
+    scroll-snap-align: start;
+  }
+
+  .pk-grayscale-shift {
+    filter: grayscale(1) contrast(0.95);
+    transition: filter 350ms var(--ease-pickle);
+  }
+  .group:hover .pk-grayscale-shift,
+  .group:focus-visible .pk-grayscale-shift {
+    filter: grayscale(0) contrast(1);
+  }
+
+  /* Hero settle: 3% scale over 600ms on load */
+  .pk-settle {
+    animation: pk-settle 600ms var(--ease-pickle) both;
+  }
+  .pk-fade {
+    animation: pk-fade 350ms var(--ease-pickle) both;
+  }
+
+  /* Size pills: unavailable sizes get a diagonal hairline */
+  .pk-size-off {
+    color: var(--color-slate-ink);
+    background-image: linear-gradient(
+      to top right,
+      transparent calc(50% - 0.5px),
+      var(--color-stone-deep) calc(50% - 0.5px),
+      var(--color-stone-deep) calc(50% + 0.5px),
+      transparent calc(50% + 0.5px)
+    );
+  }
+
+  .pk-scroll-lock {
+    overflow: hidden;
+  }
+
+  .pk-skeleton {
+    background: linear-gradient(90deg, var(--color-cream), var(--color-stone), var(--color-cream));
+    background-size: 200% 100%;
+    animation: pk-shimmer 1.4s linear infinite;
+  }
+}
+
+@keyframes pk-settle {
+  from {
+    transform: scale(1.03);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes pk-fade {
+  from {
+    opacity: 0.001;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes pk-shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pk-settle,
+  .pk-fade,
+  .pk-skeleton {
+    animation: none;
+  }
+  .pk-link,
+  .pk-grayscale-shift,
+  .pk-ink-hover {
+    transition: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
