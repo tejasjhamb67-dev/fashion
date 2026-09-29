@@ -30,8 +30,8 @@ function Home() {
           <ScrollScrub scenes={scrollScrubScenes} theme={scrollScrubTheme} />
         </section>
       ) : null}
-      <CategoryNavigator />
       <MatchCapShowcase />
+      <CategoryNavigator />
       <ProductRail title="The initial run" meta="Series 01 // Initial run" products={[...featured, ...rest.slice(0, 3)]} />
       <WorldStatement />
       <FieldStudy />

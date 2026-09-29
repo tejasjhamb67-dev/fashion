@@ -60,7 +60,7 @@ function buildHead(meta: AppMeta) {
   const title = meta.og_title ?? SITE_NAME;
   const description = meta.og_description ?? DEFAULT_DESCRIPTION;
   const ogImage = absolute(toOwnAssetUrl(meta.og_image_url));
-  const favicon = toOwnAssetUrl(meta.favicon_url) ?? "/favicon.svg";
+  const favicon = toOwnAssetUrl(meta.favicon_url) ?? "/icon-512.png";
   const ogVideo = absolute(toOwnAssetUrl(meta.og_video_url));
 
   return {
@@ -92,7 +92,8 @@ function buildHead(meta: AppMeta) {
         href: "https://fonts.googleapis.com/css2?family=Baskervville:ital,wght@0,400;1,400&family=Inter:wght@400;500&display=swap",
       },
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: favicon, type: "image/svg+xml" },
+      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+      { rel: "icon", href: favicon, sizes: "512x512" },
       { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
       { rel: "manifest", href: "/site.webmanifest" },
     ],

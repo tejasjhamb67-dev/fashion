@@ -42,13 +42,19 @@ export function Hero() {
           </div>
         </div>
         <div className="overflow-hidden border-stone md:border-l">
-          <Plate
-            index={1}
-            tone="forest"
-            ratio="4 / 5"
-            label="Editorial: The Sunday Overshirt and the Match Cap, late-day light, pavilion steps"
-            className="pk-settle h-full w-full border-0"
-          />
+          <picture>
+            <source srcSet="/assets/world/hero-linen.webp" type="image/webp" />
+            <img
+              src="/assets/world/hero-linen.jpg"
+              width={1200}
+              height={1500}
+              alt="Belgian flax linen under low late-afternoon light, close enough to see every slub"
+              fetchPriority="high"
+              decoding="async"
+              className="pk-settle block h-full w-full object-cover"
+              style={{ aspectRatio: "4 / 5" }}
+            />
+          </picture>
         </div>
       </div>
     </section>

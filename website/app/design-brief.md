@@ -11,7 +11,7 @@ chalk `#FAF8F5`, cream `#F2EDE2`, stone `#E3DCCE`, washed navy `#131922`, slate 
 
 **Locked type.** Inter (stand-in for PP Neue Montreal) for all UI, prices, specs and micro labels; Baskervville (stand-in for Ogg / Baskerville Display) for display, headlines and manifesto lines. Serif justified by the brand spec's literary editorial lineage.
 
-Animation mode: animated-website — user picked Animated at intake, then chose "Build now, add film later" because the account had 0 generation credits. The scroll-scrub engine ships in the repo and `src/scroll-scrub-scenes.ts` is filled; `FILM_READY` stays false (static editorial hero renders) until the film is generated and encoded.
+Animation mode: animated-website — user picked Animated at intake. With no generation credits, the film is an original procedural render (NumPy + FFmpeg): one continuous macro pass across woven Belgian linen, cut into three seamless chapters (cloth, light, stitch).
 
 **Journey shape:** `single-shot`.
 **Journey:**

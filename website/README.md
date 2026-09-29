@@ -13,3 +13,16 @@ files only, not the full template.
 - `app/src/lib/api/store.functions.ts`: server functions for reviews, newsletter and orders (D1).
 - `app/migrations/0002_store.sql`: tables plus clearly labelled sample reviews.
 - `app/src/scroll-scrub-scenes.ts`: film scene copy; `FILM_READY` flips on once the film is generated.
+
+## The film
+
+`film/linen_film.py` renders the home-page film from scratch (NumPy + Pillow, encoded
+with FFmpeg): a woven plain-weave linen height field, raking late-day light with
+cast shadows, a slow camera push that ends on six rows of cricket-green stitching.
+
+    python3 film/linen_film.py film master.mp4 1920 1080 24 14
+    python3 film/linen_film.py still cover_%t.png 0.8 2400 1600
+
+The master is cut into three chapters (frames 0-112, 112-224, 224-335) so each
+chapter starts on the previous chapter's last frame, then encoded to
+`public/assets/world/scene-0N.mp4` (1600px, CRF 25) and `scene-0N-mobile.mp4` (600p).
